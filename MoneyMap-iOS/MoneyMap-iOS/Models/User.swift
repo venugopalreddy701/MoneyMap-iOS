@@ -10,6 +10,6 @@ struct User: Codable{
     
     let email:String
     let password:String
-    let profileData:String
+    let profileImageData:String
     
 }

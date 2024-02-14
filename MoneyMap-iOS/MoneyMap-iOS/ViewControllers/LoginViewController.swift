@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    let emailTextField: UITextField = {
+    private let emailTextField: UITextField = {
             let textField = UITextField()
             textField.placeholder = "Email ID"
             textField.borderStyle = .roundedRect
@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
             return textField
         }()
     
-    let passwordTextField: UITextField = {
+    private let passwordTextField: UITextField = {
             let textField = UITextField()
             textField.placeholder = "Password"
             textField.isSecureTextEntry = true
@@ -26,10 +26,9 @@ class LoginViewController: UIViewController {
             return textField
         }()
     
-    let loginButton: UIButton = {
+    private let loginButton: UIButton = {
             let button = UIButton(type: .system)
             button.setTitle("Login", for: .normal)
-            button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
             button.layer.borderColor = CGColor(red: 65, green: 113, blue: 242, alpha: 0)
             button.backgroundColor = UIColor(red: 0/255, green: 204/255, blue: 0/255, alpha: 1.0)
             button.setTitleColor(UIColor.white, for: .normal)
@@ -38,10 +37,9 @@ class LoginViewController: UIViewController {
         }()
     
     
-    let registerButton: UIButton = {
+    private let registerButton: UIButton = {
             let button = UIButton(type: .system)
             button.setTitle("Create Account", for: .normal)
-            button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
             button.layer.borderColor = CGColor(red: 65, green: 113, blue: 242, alpha: 0)
             button.backgroundColor = UIColor(red: 26/255, green: 117/255, blue: 255/255, alpha: 1.0)
             button.setTitleColor(UIColor.white, for: .normal)
@@ -61,7 +59,9 @@ class LoginViewController: UIViewController {
 
     
     
-    func setUpUI(){
+    private func setUpUI(){
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
@@ -88,13 +88,13 @@ class LoginViewController: UIViewController {
                ])
     }
     
-    @objc func loginButtonTapped(_ sender: UIButton) {
+    @objc private func loginButtonTapped(_ sender: UIButton) {
             
             print("Login Button Tapped")
         }
     
     
-    @objc func registerButtonTapped(_ sender: UIButton) {
+    @objc private func registerButtonTapped(_ sender: UIButton) {
         
             print("Register Button Tapped")
             let CreateAccountViewController = CreateAccountViewController()
@@ -102,9 +102,6 @@ class LoginViewController: UIViewController {
         
         
         }
-    
-    
-    
     
     
 

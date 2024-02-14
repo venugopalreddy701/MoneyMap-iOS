@@ -10,17 +10,69 @@ import Foundation
 
 class CreateAccountViewModel {
     
-    func createNewUser(email: String, password: String, profilePictureString: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        let userToCreate = User(email: email, password: password, profileData: profilePictureString)
-        
-        DispatchQueue.global().async {
-            UserWebService.createNewUser(userToCreate) { result in
-                DispatchQueue.main.async {
-                    completion(result)
-                }
+    let title = "Create Account"
+    
+    var successMessage: Observable<String?> = Observable(nil)
+    var errorMessage: Observable<String?> = Observable(nil)
+    var validationMessage: Observable<String?> = Observable(nil)
+    
+    func createNewUser(email: String, password: String, profilePictureString: String) {
+           let userToCreate = User(email: email, password: password, profileImageData: profilePictureString)
+           
+           DispatchQueue.global().async {
+               UserWebService.createNewUser(userToCreate) { [weak self] result in
+                   DispatchQueue.main.async {
+                       switch result {
+                       case .success(_):
+                           self?.successMessage.value = "User created successfully"
+                       case .failure(let error):
+                           self?.errorMessage.value = "Error occurred: \(error.localizedDescription)"
+                       }
+                   }
+               }
+           }
+       }
+    
+    func validateInputs(email: String?, password: String?, reenteredPassword: String?) -> Bool {
+            guard let email = email, !email.isEmpty,
+                  let password = password, !password.isEmpty,
+                  let reenteredPassword = reenteredPassword, !reenteredPassword.isEmpty
+                 else {
+                validationMessage.value = "Please make sure all fields are filled and a profile picture is selected."
+                return false
             }
+            
+            if password != reenteredPassword {
+                validationMessage.value = "Please make sure password fields match"
+                return false
+            }
+            
+            return true
+        }
+    
+    
+    
+    
+}
+
+class Observable<T> {
+    var value: T {
+        didSet {
+            listener?(value)
         }
     }
+    
+    private var listener: ((T) -> Void)?
+    
+    init(_ value: T) {
+        self.value = value
+    }
+    
+    func bind(_ listener: @escaping (T) -> Void) {
+        self.listener = listener
+        listener(value) // Trigger the listener with the initial value
+    }
 }
+
 
 
