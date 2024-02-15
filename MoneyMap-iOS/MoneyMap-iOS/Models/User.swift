@@ -4,8 +4,8 @@
 //
 //  Created by Venugopal Reddy M on 10/02/24.
 //
-
 import Foundation
+
 struct User: Codable{
     
     let email:String

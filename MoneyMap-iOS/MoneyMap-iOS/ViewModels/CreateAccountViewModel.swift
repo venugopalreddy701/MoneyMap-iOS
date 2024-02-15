@@ -4,9 +4,7 @@
 //
 //  Created by Venugopal Reddy M on 10/02/24.
 //
-
-import Foundation
-
+import UIKit
 
 class CreateAccountViewModel {
     
@@ -16,10 +14,15 @@ class CreateAccountViewModel {
     var errorMessage: Observable<String?> = Observable(nil)
     var validationMessage: Observable<String?> = Observable(nil)
     
-    func createNewUser(email: String, password: String, profilePictureString: String) {
-           let userToCreate = User(email: email, password: password, profileImageData: profilePictureString)
+    func createNewUser(email: String, password: String, reenteredPassword: String, profilePicture: UIImage?) {
            
+        if  !validateInputs(email: email, password: password, reenteredPassword: reenteredPassword) {
+            return
+        }
+  
            DispatchQueue.global().async {
+               let profilePictureString = ImageConverter.convertImageToBase64String(img: profilePicture!)
+               let userToCreate = User(email: email, password: password, profileImageData: profilePictureString)
                UserWebService.createNewUser(userToCreate) { [weak self] result in
                    DispatchQueue.main.async {
                        switch result {
@@ -33,7 +36,9 @@ class CreateAccountViewModel {
            }
        }
     
-    func validateInputs(email: String?, password: String?, reenteredPassword: String?) -> Bool {
+    
+    
+    private func validateInputs(email: String?, password: String?, reenteredPassword: String?) -> Bool {
             guard let email = email, !email.isEmpty,
                   let password = password, !password.isEmpty,
                   let reenteredPassword = reenteredPassword, !reenteredPassword.isEmpty
@@ -48,11 +53,9 @@ class CreateAccountViewModel {
             }
             
             return true
-        }
+    }
     
-    
-    
-    
+  
 }
 
 class Observable<T> {

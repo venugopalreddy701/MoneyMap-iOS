@@ -6,11 +6,11 @@
 //
 import UIKit
 
-class CreateAccountViewController : UIViewController {
+class CreateAccountViewController: UIViewController {
     
-    private var createAccountVM = CreateAccountViewModel()
+    private let createAccountVM = CreateAccountViewModel()
     
-    internal let profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
         imageView.contentMode = .scaleAspectFill
@@ -21,96 +21,87 @@ class CreateAccountViewController : UIViewController {
         return imageView
     }()
     
-   private let editProfileImageButton:UIButton = {
+    private let editProfileImageButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit Profile Picture", for: .normal)
-        button.layer.borderColor = CGColor(red: 65, green: 113, blue: 242, alpha: 0)
+        button.layer.borderColor = UIColor(red: 65/255, green: 113/255, blue: 242/255, alpha: 0).cgColor
         button.backgroundColor = UIColor.systemBackground
         button.setTitleColor(UIColor.blue, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
- 
-   private  let emailTextField: UITextField = {
-            let textField = UITextField()
-            textField.placeholder = "Email ID"
-            textField.borderStyle = .roundedRect
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.autocapitalizationType = .none
-            return textField
-        }()
+    
+    private let emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Email ID"
+        textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        return textField
+    }()
     
     private let passwordTextField: UITextField = {
-            let textField = UITextField()
-            textField.placeholder = "Enter Password"
-            textField.isSecureTextEntry = true
-            textField.borderStyle = .roundedRect
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            return textField
-        }()
+        let textField = UITextField()
+        textField.placeholder = "Enter Password"
+        textField.isSecureTextEntry = true
+        textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
     
     private let confirmPasswordTextField: UITextField = {
-            let textField = UITextField()
-            textField.placeholder = "Re-Enter Password"
-            textField.isSecureTextEntry = true
-            textField.borderStyle = .roundedRect
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            return textField
-        }()
+        let textField = UITextField()
+        textField.placeholder = "Re-Enter Password"
+        textField.isSecureTextEntry = true
+        textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
     
     private let registerButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setTitle("Register", for: .normal)
-            button.layer.borderColor = CGColor(red: 65, green: 113, blue: 242, alpha: 0)
-            button.backgroundColor = UIColor(red: 26/255, green: 117/255, blue: 255/255, alpha: 1.0)
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            return button
-        }()
-    
-    
+        let button = UIButton(type: .system)
+        button.setTitle("Register", for: .normal)
+        button.layer.borderColor = UIColor(red: 65/255, green: 113/255, blue: 242/255, alpha: 0).cgColor
+        button.backgroundColor = UIColor(red: 26/255, green: 117/255, blue: 255/255, alpha: 1.0)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = createAccountVM.title
-        view.backgroundColor =  .white
+        view.backgroundColor = .white
         setUpUI()
         bindViewModel()
-        
     }
     
     func bindViewModel() {
-        
-            createAccountVM.successMessage.bind { [weak self] message in
-                if let message = message {
-                    self?.showAlert(message: message)
-                }
+        createAccountVM.successMessage.bind { [weak self] message in
+            if let message = message {
+                self?.showAlert(message: message)
             }
-            
-            createAccountVM.errorMessage.bind { [weak self] message in
-                if let message = message {
-                    self?.showAlert(message: message)
-                }
-            }
-           createAccountVM.validationMessage.bind { [weak self] message in
-                    if let message = message {
-                        self?.showAlert(message: message)
-                    }
-                }
-        
         }
-    
-   
-    // Make UIImage view round during load by runtime calclations
-    override func viewWillLayoutSubviews() {
-    
-        profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
         
+        createAccountVM.errorMessage.bind { [weak self] message in
+            if let message = message {
+                self?.showAlert(message: message)
+            }
+        }
+        
+        createAccountVM.validationMessage.bind { [weak self] message in
+            if let message = message {
+                self?.showAlert(message: message)
+            }
+        }
     }
     
+    // Make UIImage view round during load by runtime calculations
+    override func viewWillLayoutSubviews() {
+        profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
+    }
     
-    func setUpUI(){
-        
+    func setUpUI() {
         editProfileImageButton.addTarget(self, action: #selector(chooseProfileImageButtonTapped), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
@@ -120,33 +111,31 @@ class CreateAccountViewController : UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(confirmPasswordTextField)
         view.addSubview(registerButton)
-    
+        
         profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
+        
         editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10).isActive = true
         editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
+        
         emailTextField.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: 30).isActive = true
         emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-
+        
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-
+        
         confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20).isActive = true
         confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-
+        
         registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 20).isActive = true
         registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-
-        
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -156,50 +145,34 @@ class CreateAccountViewController : UIViewController {
         passwordTextField.returnKeyType = .done
         confirmPasswordTextField.returnKeyType = .done
         
-        //quit from keyboard when other view is pressed
+        // Quit from keyboard when other view is pressed
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
-        
-        
     }
     
-    
     @objc private func dismissKeyboard() {
-           view.endEditing(true)
-       }
-    
+        view.endEditing(true)
+    }
     
     @objc private func chooseProfileImageButtonTapped() {
-           let imagePickerController = UIImagePickerController()
-           imagePickerController.delegate = self
-           imagePickerController.sourceType = .photoLibrary
-           present(imagePickerController, animated: true, completion: nil)
-       }
-    
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
     
     @objc private func registerButtonTapped(_ sender: UIButton) {
-        
         let email = emailTextField.text
         let password = passwordTextField.text
         let reenteredPassword = confirmPasswordTextField.text
         let profilePicture = profileImageView.image
-      
-        if createAccountVM.validateInputs(email: email, password: password, reenteredPassword: reenteredPassword) {
-            let profilePictureString = ImageConverter.convertImageToBase64String(img: profilePicture!)
-            createAccountVM.createNewUser(email: email!, password: password!, profilePictureString: profilePictureString)
-        }
         
-        
+        createAccountVM.createNewUser(email: email!, password: password!, reenteredPassword: reenteredPassword!, profilePicture: profilePicture)
     }
     
-    
-  private func showAlert(message: String) {
-            let alertController = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alertController, animated: true, completion: nil)
+    private func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
-    
-    
-  
-    
 }
