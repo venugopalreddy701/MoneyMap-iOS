@@ -1,12 +1,13 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  MoneyMap-iOS
 //
 //  Created by Venugopal Reddy M on 03/02/24.
 //
+
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
 
     private let emailTextField: UITextField = {
         let textField = UITextField()

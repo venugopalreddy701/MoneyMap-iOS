@@ -4,9 +4,10 @@
 //
 //  Created by Venugopal Reddy M on 07/02/24.
 //
+
 import UIKit
 
-class CreateAccountViewController: UIViewController {
+final class CreateAccountViewController: UIViewController {
     
     private let createAccountVM = CreateAccountViewModel()
     
@@ -71,29 +72,18 @@ class CreateAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = createAccountVM.title
-        view.backgroundColor = .white
         setUpUI()
         bindViewModel()
     }
     
     func bindViewModel() {
-        createAccountVM.successMessage.bind { [weak self] message in
+
+        createAccountVM.userMessage.bind { [weak self] message in
             if let message = message {
                 self?.showAlert(message: message)
             }
         }
         
-        createAccountVM.errorMessage.bind { [weak self] message in
-            if let message = message {
-                self?.showAlert(message: message)
-            }
-        }
-        
-        createAccountVM.validationMessage.bind { [weak self] message in
-            if let message = message {
-                self?.showAlert(message: message)
-            }
-        }
     }
     
     // Make UIImage view round during load by runtime calculations
@@ -102,6 +92,9 @@ class CreateAccountViewController: UIViewController {
     }
     
     func setUpUI() {
+
+        view.backgroundColor = .white
+
         editProfileImageButton.addTarget(self, action: #selector(chooseProfileImageButtonTapped), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
@@ -112,31 +105,31 @@ class CreateAccountViewController: UIViewController {
         view.addSubview(confirmPasswordTextField)
         view.addSubview(registerButton)
         
-        profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        xprofileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: LayoutConstants.profileImageTopMargin).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: LayoutConstants.profileImageSize).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: LayoutConstants.profileImageSize).isActive = true
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10).isActive = true
+
+        editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: LayoutConstants.editProfileButtonTopMargin).isActive = true
         editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        emailTextField.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: 30).isActive = true
-        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        
-        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20).isActive = true
-        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        
-        confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20).isActive = true
-        confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        
-        registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 20).isActive = true
-        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        registerButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
+
+        emailTextField.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: LayoutConstants.textFieldTopMargin).isActive = true
+        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
+        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
+
+        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing).isActive = true
+        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
+        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
+
+        confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing).isActive = true
+        confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
+        confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
+
+        registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing).isActive = true
+        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
+        registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
+        registerButton.heightAnchor.constraint(equalToConstant: LayoutConstants.registerButtonHeight).isActive = true
+
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -162,9 +155,20 @@ class CreateAccountViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped(_ sender: UIButton) {
-        let email = emailTextField.text
-        let password = passwordTextField.text
-        let reenteredPassword = confirmPasswordTextField.text
+       guard let email = emailTextField.text, !email.isEmpty else {
+           showAlert(message: "Please enter your email.")
+           return
+         }
+    
+       guard let password = passwordTextField.text, !password.isEmpty else {
+           showAlert(message: "Please enter your password.")
+           return
+         }
+    
+       guard let reenteredPassword = confirmPasswordTextField.text, !reenteredPassword.isEmpty else {
+           showAlert(message: "Please re-enter your password.")
+           return
+         }
         let profilePicture = profileImageView.image
         
         createAccountVM.createNewUser(email: email!, password: password!, reenteredPassword: reenteredPassword!, profilePicture: profilePicture)
