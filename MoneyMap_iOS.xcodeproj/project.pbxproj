@@ -1,0 +1,706 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FFE28A62B89C1B700A40BED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28A52B89C1B700A40BED /* AppDelegate.swift */; };
+		1FFE28A82B89C1B700A40BED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28A72B89C1B700A40BED /* SceneDelegate.swift */; };
+		1FFE28AA2B89C1B700A40BED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28A92B89C1B700A40BED /* ViewController.swift */; };
+		1FFE28AF2B89C1B900A40BED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFE28AE2B89C1B900A40BED /* Assets.xcassets */; };
+		1FFE28B22B89C1B900A40BED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FFE28B02B89C1B900A40BED /* LaunchScreen.storyboard */; };
+		1FFE28BD2B89C1BA00A40BED /* MoneyMap_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28BC2B89C1BA00A40BED /* MoneyMap_iOSTests.swift */; };
+		1FFE28C72B89C1BA00A40BED /* MoneyMap_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28C62B89C1BA00A40BED /* MoneyMap_iOSUITests.swift */; };
+		1FFE28C92B89C1BA00A40BED /* MoneyMap_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28C82B89C1BA00A40BED /* MoneyMap_iOSUITestsLaunchTests.swift */; };
+		1FFE28D92B89C3A100A40BED /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28D82B89C3A100A40BED /* CreateAccountViewModel.swift */; };
+		1FFE28DC2B89C3D700A40BED /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28DB2B89C3D700A40BED /* CreateAccountViewController.swift */; };
+		1FFE28DE2B89C3F200A40BED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28DD2B89C3F200A40BED /* LoginViewController.swift */; };
+		1FFE28E12B89C45000A40BED /* UserWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28E02B89C45000A40BED /* UserWebService.swift */; };
+		1FFE28E62B89C49A00A40BED /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28E52B89C49A00A40BED /* Observable.swift */; };
+		1FFE28E92B89C4C400A40BED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28E82B89C4C400A40BED /* User.swift */; };
+		1FFE28EC2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28EB2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift */; };
+		1FFE28EE2B89C51100A40BED /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28ED2B89C51100A40BED /* UIImageExtension.swift */; };
+		1FFE28F12B89C53C00A40BED /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28F02B89C53C00A40BED /* LayoutConstants.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1FFE28B92B89C1BA00A40BED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FFE289A2B89C1B700A40BED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FFE28A12B89C1B700A40BED;
+			remoteInfo = MoneyMap_iOS;
+		};
+		1FFE28C32B89C1BA00A40BED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FFE289A2B89C1B700A40BED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FFE28A12B89C1B700A40BED;
+			remoteInfo = MoneyMap_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1FFE28A22B89C1B700A40BED /* MoneyMap_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyMap_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFE28A52B89C1B700A40BED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1FFE28A72B89C1B700A40BED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1FFE28A92B89C1B700A40BED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1FFE28AE2B89C1B900A40BED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1FFE28B12B89C1B900A40BED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1FFE28B32B89C1B900A40BED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FFE28B82B89C1BA00A40BED /* MoneyMap_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyMap_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFE28BC2B89C1BA00A40BED /* MoneyMap_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyMap_iOSTests.swift; sourceTree = "<group>"; };
+		1FFE28C22B89C1BA00A40BED /* MoneyMap_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyMap_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFE28C62B89C1BA00A40BED /* MoneyMap_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyMap_iOSUITests.swift; sourceTree = "<group>"; };
+		1FFE28C82B89C1BA00A40BED /* MoneyMap_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyMap_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1FFE28D82B89C3A100A40BED /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
+		1FFE28DB2B89C3D700A40BED /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		1FFE28DD2B89C3F200A40BED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1FFE28E02B89C45000A40BED /* UserWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWebService.swift; sourceTree = "<group>"; };
+		1FFE28E52B89C49A00A40BED /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		1FFE28E82B89C4C400A40BED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1FFE28EB2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewControllerImagePickerTextFieldExtension.swift; sourceTree = "<group>"; };
+		1FFE28ED2B89C51100A40BED /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		1FFE28F02B89C53C00A40BED /* LayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1FFE289F2B89C1B700A40BED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FFE28B52B89C1BA00A40BED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FFE28BF2B89C1BA00A40BED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FFE28992B89C1B700A40BED = {
+			isa = PBXGroup;
+			children = (
+				1FFE28A42B89C1B700A40BED /* MoneyMap_iOS */,
+				1FFE28BB2B89C1BA00A40BED /* MoneyMap_iOSTests */,
+				1FFE28C52B89C1BA00A40BED /* MoneyMap_iOSUITests */,
+				1FFE28A32B89C1B700A40BED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1FFE28A32B89C1B700A40BED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28A22B89C1B700A40BED /* MoneyMap_iOS.app */,
+				1FFE28B82B89C1BA00A40BED /* MoneyMap_iOSTests.xctest */,
+				1FFE28C22B89C1BA00A40BED /* MoneyMap_iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1FFE28A42B89C1B700A40BED /* MoneyMap_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28EF2B89C52B00A40BED /* Constants */,
+				1FFE28EA2B89C4DC00A40BED /* Extensions */,
+				1FFE28E72B89C4B500A40BED /* Models */,
+				1FFE28E22B89C46B00A40BED /* Observables */,
+				1FFE28DF2B89C43600A40BED /* Services */,
+				1FFE28DA2B89C3BE00A40BED /* ViewControllers */,
+				1FFE28D72B89C37800A40BED /* ViewModels */,
+				1FFE28D62B89C2BC00A40BED /* Views */,
+				1FFE28D52B89C23900A40BED /* Resources */,
+				1FFE28A92B89C1B700A40BED /* ViewController.swift */,
+				1FFE28B32B89C1B900A40BED /* Info.plist */,
+			);
+			path = MoneyMap_iOS;
+			sourceTree = "<group>";
+		};
+		1FFE28BB2B89C1BA00A40BED /* MoneyMap_iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28BC2B89C1BA00A40BED /* MoneyMap_iOSTests.swift */,
+			);
+			path = MoneyMap_iOSTests;
+			sourceTree = "<group>";
+		};
+		1FFE28C52B89C1BA00A40BED /* MoneyMap_iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28C62B89C1BA00A40BED /* MoneyMap_iOSUITests.swift */,
+				1FFE28C82B89C1BA00A40BED /* MoneyMap_iOSUITestsLaunchTests.swift */,
+			);
+			path = MoneyMap_iOSUITests;
+			sourceTree = "<group>";
+		};
+		1FFE28D52B89C23900A40BED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28AE2B89C1B900A40BED /* Assets.xcassets */,
+				1FFE28A52B89C1B700A40BED /* AppDelegate.swift */,
+				1FFE28A72B89C1B700A40BED /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1FFE28D62B89C2BC00A40BED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28B02B89C1B900A40BED /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1FFE28D72B89C37800A40BED /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28D82B89C3A100A40BED /* CreateAccountViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1FFE28DA2B89C3BE00A40BED /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28DB2B89C3D700A40BED /* CreateAccountViewController.swift */,
+				1FFE28DD2B89C3F200A40BED /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1FFE28DF2B89C43600A40BED /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28E02B89C45000A40BED /* UserWebService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1FFE28E22B89C46B00A40BED /* Observables */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28E52B89C49A00A40BED /* Observable.swift */,
+			);
+			path = Observables;
+			sourceTree = "<group>";
+		};
+		1FFE28E72B89C4B500A40BED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28E82B89C4C400A40BED /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1FFE28EA2B89C4DC00A40BED /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28EB2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift */,
+				1FFE28ED2B89C51100A40BED /* UIImageExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1FFE28EF2B89C52B00A40BED /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				1FFE28F02B89C53C00A40BED /* LayoutConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1FFE28A12B89C1B700A40BED /* MoneyMap_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FFE28CC2B89C1BA00A40BED /* Build configuration list for PBXNativeTarget "MoneyMap_iOS" */;
+			buildPhases = (
+				1FFE289E2B89C1B700A40BED /* Sources */,
+				1FFE289F2B89C1B700A40BED /* Frameworks */,
+				1FFE28A02B89C1B700A40BED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoneyMap_iOS;
+			productName = MoneyMap_iOS;
+			productReference = 1FFE28A22B89C1B700A40BED /* MoneyMap_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1FFE28B72B89C1BA00A40BED /* MoneyMap_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FFE28CF2B89C1BA00A40BED /* Build configuration list for PBXNativeTarget "MoneyMap_iOSTests" */;
+			buildPhases = (
+				1FFE28B42B89C1BA00A40BED /* Sources */,
+				1FFE28B52B89C1BA00A40BED /* Frameworks */,
+				1FFE28B62B89C1BA00A40BED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FFE28BA2B89C1BA00A40BED /* PBXTargetDependency */,
+			);
+			name = MoneyMap_iOSTests;
+			productName = MoneyMap_iOSTests;
+			productReference = 1FFE28B82B89C1BA00A40BED /* MoneyMap_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1FFE28C12B89C1BA00A40BED /* MoneyMap_iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FFE28D22B89C1BA00A40BED /* Build configuration list for PBXNativeTarget "MoneyMap_iOSUITests" */;
+			buildPhases = (
+				1FFE28BE2B89C1BA00A40BED /* Sources */,
+				1FFE28BF2B89C1BA00A40BED /* Frameworks */,
+				1FFE28C02B89C1BA00A40BED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1FFE28C42B89C1BA00A40BED /* PBXTargetDependency */,
+			);
+			name = MoneyMap_iOSUITests;
+			productName = MoneyMap_iOSUITests;
+			productReference = 1FFE28C22B89C1BA00A40BED /* MoneyMap_iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1FFE289A2B89C1B700A40BED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					1FFE28A12B89C1B700A40BED = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					1FFE28B72B89C1BA00A40BED = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 1FFE28A12B89C1B700A40BED;
+					};
+					1FFE28C12B89C1BA00A40BED = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 1FFE28A12B89C1B700A40BED;
+					};
+				};
+			};
+			buildConfigurationList = 1FFE289D2B89C1B700A40BED /* Build configuration list for PBXProject "MoneyMap_iOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1FFE28992B89C1B700A40BED;
+			productRefGroup = 1FFE28A32B89C1B700A40BED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1FFE28A12B89C1B700A40BED /* MoneyMap_iOS */,
+				1FFE28B72B89C1BA00A40BED /* MoneyMap_iOSTests */,
+				1FFE28C12B89C1BA00A40BED /* MoneyMap_iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1FFE28A02B89C1B700A40BED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FFE28B22B89C1B900A40BED /* LaunchScreen.storyboard in Resources */,
+				1FFE28AF2B89C1B900A40BED /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FFE28B62B89C1BA00A40BED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FFE28C02B89C1BA00A40BED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1FFE289E2B89C1B700A40BED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FFE28E62B89C49A00A40BED /* Observable.swift in Sources */,
+				1FFE28DE2B89C3F200A40BED /* LoginViewController.swift in Sources */,
+				1FFE28DC2B89C3D700A40BED /* CreateAccountViewController.swift in Sources */,
+				1FFE28F12B89C53C00A40BED /* LayoutConstants.swift in Sources */,
+				1FFE28D92B89C3A100A40BED /* CreateAccountViewModel.swift in Sources */,
+				1FFE28EE2B89C51100A40BED /* UIImageExtension.swift in Sources */,
+				1FFE28AA2B89C1B700A40BED /* ViewController.swift in Sources */,
+				1FFE28E92B89C4C400A40BED /* User.swift in Sources */,
+				1FFE28EC2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift in Sources */,
+				1FFE28A62B89C1B700A40BED /* AppDelegate.swift in Sources */,
+				1FFE28E12B89C45000A40BED /* UserWebService.swift in Sources */,
+				1FFE28A82B89C1B700A40BED /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FFE28B42B89C1BA00A40BED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FFE28BD2B89C1BA00A40BED /* MoneyMap_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FFE28BE2B89C1BA00A40BED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FFE28C92B89C1BA00A40BED /* MoneyMap_iOSUITestsLaunchTests.swift in Sources */,
+				1FFE28C72B89C1BA00A40BED /* MoneyMap_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1FFE28BA2B89C1BA00A40BED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FFE28A12B89C1B700A40BED /* MoneyMap_iOS */;
+			targetProxy = 1FFE28B92B89C1BA00A40BED /* PBXContainerItemProxy */;
+		};
+		1FFE28C42B89C1BA00A40BED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FFE28A12B89C1B700A40BED /* MoneyMap_iOS */;
+			targetProxy = 1FFE28C32B89C1BA00A40BED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1FFE28B02B89C1B900A40BED /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FFE28B12B89C1B900A40BED /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1FFE28CA2B89C1BA00A40BED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1FFE28CB2B89C1BA00A40BED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1FFE28CD2B89C1BA00A40BED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8UX4SVZ22M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoneyMap_iOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.venu.MoneyMap-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1FFE28CE2B89C1BA00A40BED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8UX4SVZ22M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoneyMap_iOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.venu.MoneyMap-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1FFE28D02B89C1BA00A40BED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8UX4SVZ22M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.venu.MoneyMap-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyMap_iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoneyMap_iOS";
+			};
+			name = Debug;
+		};
+		1FFE28D12B89C1BA00A40BED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8UX4SVZ22M;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.venu.MoneyMap-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyMap_iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoneyMap_iOS";
+			};
+			name = Release;
+		};
+		1FFE28D32B89C1BA00A40BED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8UX4SVZ22M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.venu.MoneyMap-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MoneyMap_iOS;
+			};
+			name = Debug;
+		};
+		1FFE28D42B89C1BA00A40BED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8UX4SVZ22M;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.venu.MoneyMap-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MoneyMap_iOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FFE289D2B89C1B700A40BED /* Build configuration list for PBXProject "MoneyMap_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FFE28CA2B89C1BA00A40BED /* Debug */,
+				1FFE28CB2B89C1BA00A40BED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FFE28CC2B89C1BA00A40BED /* Build configuration list for PBXNativeTarget "MoneyMap_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FFE28CD2B89C1BA00A40BED /* Debug */,
+				1FFE28CE2B89C1BA00A40BED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FFE28CF2B89C1BA00A40BED /* Build configuration list for PBXNativeTarget "MoneyMap_iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FFE28D02B89C1BA00A40BED /* Debug */,
+				1FFE28D12B89C1BA00A40BED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FFE28D22B89C1BA00A40BED /* Build configuration list for PBXNativeTarget "MoneyMap_iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FFE28D32B89C1BA00A40BED /* Debug */,
+				1FFE28D42B89C1BA00A40BED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1FFE289A2B89C1B700A40BED /* Project object */;
+}
