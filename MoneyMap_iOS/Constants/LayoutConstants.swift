@@ -14,6 +14,6 @@ struct LayoutConstants {
     static let textFieldTopMargin: CGFloat = 30
     static let textFieldSpacing: CGFloat = 20
     static let textFieldHorizontalPadding: CGFloat = 20
-    static let registerButtonHeight: CGFloat = 40
+    static let registerButtonHeight: CGFloat = 44
 }
 
