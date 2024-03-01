@@ -15,5 +15,14 @@ struct LayoutConstants {
     static let textFieldSpacing: CGFloat = 20
     static let textFieldHorizontalPadding: CGFloat = 20
     static let registerButtonHeight: CGFloat = 44
+    static let emailTextFieldTopMargin: CGFloat = 130
+    static let emailTextFieldHorizontalPadding: CGFloat = 20
+    static let passwordTextFieldTopMargin: CGFloat = 20
+    static let passwordTextFieldHorizontalPadding: CGFloat = 20
+    static let loginButtonTopMargin: CGFloat = 30
+    static let loginButtonHorizontalPadding: CGFloat = 20
+    static let registerButtonTopMargin: CGFloat = 20
+    static let registerButtonHorizontalPadding: CGFloat = 20
+    
 }
 
