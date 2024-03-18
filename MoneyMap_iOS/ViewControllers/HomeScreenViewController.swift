@@ -31,7 +31,6 @@ final class HomeScreenViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        print("Login controller,ViewDidLoad is called.")
         super.viewDidLoad()
         title = homeVM.title
         setUpUI()
@@ -51,12 +50,10 @@ final class HomeScreenViewController: UIViewController {
     
     
     private func setUpUI(){
+        
         view.backgroundColor = .white
-        
-        
         view.addSubview(emailTextField)
-        
-        
+    
         emailTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.emailTextFieldTopMargin).isActive = true
         emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.emailTextFieldHorizontalPadding).isActive = true
         emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.emailTextFieldHorizontalPadding).isActive = true
@@ -72,7 +69,8 @@ final class HomeScreenViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func bindViewModel() {
+    
+    private func bindViewModel() {
 
         homeVM.userMessage.bind { [weak self] message in
             if let message = message {
@@ -97,10 +95,10 @@ final class HomeScreenViewController: UIViewController {
         homeVM.isAuthenticated.bind{ [weak self] state in
         
             switch state {
-            case false :
+             case false :
                 self?.redirectToLogin()
-                            default:
-                                break
+             default:
+                    break
                 }
           
           }
@@ -114,12 +112,13 @@ final class HomeScreenViewController: UIViewController {
        
     }
     
+    
+    
     private func redirectToLogin() {
       
         let loginViewController = LoginViewController()
         navigationController?.setViewControllers([loginViewController], animated: true)
 
-        
         
     }
     

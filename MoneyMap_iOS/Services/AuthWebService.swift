@@ -25,7 +25,7 @@ final class AuthWebService{
             completion(.failure(NSError(domain: "JSON Serialization Error", code: -1, userInfo: nil)))
             return
         }
-        print("JSON Data that will be sent: \(jsonData)")
+        
         
         var request = URLRequest(url: urlString)
         request.httpMethod = "POST"
@@ -39,7 +39,7 @@ final class AuthWebService{
             }
             
             if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode){
-                print("http code: \(httpResponse.statusCode)")
+               // do nothing
             }
             else
             {

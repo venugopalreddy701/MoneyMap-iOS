@@ -25,7 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if accessTokenExists && refreshTokenExists {
             let navigationController = UINavigationController(rootViewController: HomeScreenViewController())
             window.rootViewController = navigationController
-            print("There are values in keychain")
         }
         else{
             let navigationController = UINavigationController(rootViewController: LoginViewController())

@@ -24,10 +24,8 @@ final class HomeViewModel{
     
     
     func loadUserDetails(){
-        
         //start progress indicator
         updateLoadingStatus?(true)
-        
         
         UserWebService.getUserDetails(){[weak self] result in
             
@@ -45,10 +43,11 @@ final class HomeViewModel{
                 }
                 self?.updateLoadingStatus?(false)
             }
-            
         }
      
     }
+    
+    
     
   
 }

@@ -80,7 +80,6 @@ final class UserWebService {
 
             if httpResponse.statusCode == 401 {
                 // Access token has expired, refresh it
-                print("ACCCESS TOKEN ISS EXPIREDDD")
                 refreshAccessToken(refreshToken: refreshToken) { refreshResult in
                     switch refreshResult {
                     case .success(let newAccessToken):
@@ -137,7 +136,6 @@ final class UserWebService {
 
             if httpResponse.statusCode == 401 {
                 // Refresh token has expired, redirect to login
-                print("REFRESH TOKEN ALSO EXPIRED , REDIRECT TO LOGIN")
                 keychainHelper.delete(service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
                 keychainHelper.delete(service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
                 completion(.failure(NSError(domain: "Refresh token expired, redirect to login", code: 401, userInfo: nil)))

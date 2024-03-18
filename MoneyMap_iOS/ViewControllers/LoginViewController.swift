@@ -182,12 +182,11 @@ final class LoginViewController: UIViewController {
         loginVM.isAuthenticated.bind{ [weak self] state in
         
             switch state {
-            case true :
-                print("login successful, so redirecting to home screen")
+             case true :
                 self?.redirectToHome()
-                            default:
-                                break
-                }
+             default:
+                break
+              }
           
           }
         
