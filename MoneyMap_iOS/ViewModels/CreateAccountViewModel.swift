@@ -12,17 +12,25 @@ final class CreateAccountViewModel {
     
     var userMessage: Observable<String?> = Observable(nil)
     
+    var updateLoadingStatus: ((Bool) -> Void)?
+    
     func createNewUser(email: String, password: String, reenteredPassword: String, profilePicture: UIImage?) {
            
         if !validateInputs(email: email, password: password, reenteredPassword: reenteredPassword){
             return
         }
+        
+        //start progress indicator
+        updateLoadingStatus?(true)
+
   
            DispatchQueue.global().async {
                let profilePictureString = profilePicture?.toBase64String()
                let userToCreate = User(email: email, password: password, profileImageData: profilePictureString ?? "")
+              
                UserWebService.createNewUser(userToCreate) { [weak self] result in
                    DispatchQueue.main.async {
+                       self?.updateLoadingStatus?(false)
                        switch result {
                        case .success(_):
                            self?.userMessage.value = "User created successfully"

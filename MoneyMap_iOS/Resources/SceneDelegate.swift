@@ -16,10 +16,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        let keychainHelper = KeychainHelper.standard
+        let accessTokenExists = keychainHelper.hasToken(service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
+        let refreshTokenExists = keychainHelper.hasToken(service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
+
         let window = UIWindow(windowScene:windowScene)
-        let navigationController = UINavigationController(rootViewController: LoginViewController())
         
-        window.rootViewController = navigationController
+        if accessTokenExists && refreshTokenExists {
+            let navigationController = UINavigationController(rootViewController: HomeScreenViewController())
+            window.rootViewController = navigationController
+            print("There are values in keychain")
+        }
+        else{
+            let navigationController = UINavigationController(rootViewController: LoginViewController())
+            window.rootViewController = navigationController
+        }
+        
         window.makeKeyAndVisible()
         self.window = window
         

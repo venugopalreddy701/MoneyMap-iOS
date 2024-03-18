@@ -69,11 +69,25 @@ final class CreateAccountViewController: UIViewController {
         return button
     }()
     
+    private var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        return activityIndicator
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = createAccountVM.title
         setUpUI()
         bindViewModel()
+        setupActivityIndicator()
+    }
+    
+    func setupActivityIndicator(){
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+     
     }
     
     func bindViewModel() {
@@ -83,6 +97,20 @@ final class CreateAccountViewController: UIViewController {
                 self?.showAlert(message: message)
             }
         }
+        
+        //setup closure to update the indicator
+        createAccountVM.updateLoadingStatus = { [weak self] isLoading in
+            if isLoading {
+                self?.activityIndicator.startAnimating()
+                self?.view.isUserInteractionEnabled = false
+                self?.navigationController?.navigationBar.isUserInteractionEnabled = false
+            } else {
+                self?.activityIndicator.stopAnimating()
+                self?.view.isUserInteractionEnabled = true
+                self?.navigationController?.navigationBar.isUserInteractionEnabled = true
+            }
+        }
+        
         
     }
     
