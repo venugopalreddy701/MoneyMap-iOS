@@ -39,7 +39,16 @@ final class AuthWebService{
             }
             
             if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode){
-               // do nothing
+                
+                if let data = data,
+                   let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let accessToken = json["accessToken"] as? String ,
+                   let refreshToken = json["refreshToken"] as? String {
+                    completion(.success((accessToken: accessToken, refreshToken: refreshToken)))
+                } else {
+                    completion(.failure(NSError(domain: "Invalid response data", code: -1, userInfo: nil)))
+                }
+                
             }
             else
             {
@@ -47,14 +56,7 @@ final class AuthWebService{
                 return
             }
             
-            if let data = data,
-               let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-               let accessToken = json["accessToken"] as? String ,
-               let refreshToken = json["refreshToken"] as? String {
-                completion(.success((accessToken: accessToken, refreshToken: refreshToken)))
-            } else {
-                completion(.failure(NSError(domain: "Invalid response data", code: -1, userInfo: nil)))
-            }
+            
             
             
         }.resume()
