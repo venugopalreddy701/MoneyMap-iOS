@@ -50,15 +50,7 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private let deleteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("delete tokens", for: .normal)
-        button.layer.borderColor = UIColor(red: 65/255, green: 113/255, blue: 242/255, alpha: 0).cgColor
-        button.backgroundColor = UIColor(red: 26/255, green: 117/255, blue: 255/255, alpha: 1.0)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+   
     
     
     private var activityIndicator: UIActivityIndicatorView = {
@@ -87,13 +79,12 @@ final class LoginViewController: UIViewController {
         
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
-        deleteButton.addTarget(self, action: #selector(deleteTokens), for: .touchUpInside)
         
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
         view.addSubview(registerButton)
-        view.addSubview(deleteButton)
+        
         
         emailTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.emailTextFieldTopMargin).isActive = true
         emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.emailTextFieldHorizontalPadding).isActive = true
@@ -111,24 +102,11 @@ final class LoginViewController: UIViewController {
         registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.registerButtonHorizontalPadding).isActive = true
         registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.registerButtonHorizontalPadding).isActive = true
         
-        deleteButton.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant:LayoutConstants.registerButtonTopMargin).isActive = true
-        deleteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.registerButtonHorizontalPadding).isActive = true
-        deleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.registerButtonHorizontalPadding).isActive = true
         
        
     }
     
-    @objc private func deleteTokens(_ sender: UIButton) {
-        
-        let keychainHelper = KeychainHelper.standard
-        // Delete access token
-        keychainHelper.delete(service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
-        // Delete refresh token
-        keychainHelper.delete(service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
-
-    }
-    
-    
+   
     
     @objc private func loginButtonTapped(_ sender: UIButton) {
         
