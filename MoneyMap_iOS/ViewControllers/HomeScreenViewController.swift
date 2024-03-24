@@ -5,8 +5,6 @@
 //  Created by Venugopal on 09/03/24.
 //
 
-import Foundation
-
 import UIKit
 
 final class HomeScreenViewController: UIViewController {
@@ -26,6 +24,8 @@ final class HomeScreenViewController: UIViewController {
     
     private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
     
@@ -35,28 +35,26 @@ final class HomeScreenViewController: UIViewController {
         title = homeVM.title
         setUpUI()
         bindViewModel()
-        setupActivityIndicator()
         homeVM.loadUserDetails()
     }
-    
-    func setupActivityIndicator(){
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
-     
-    }
-    
-
-    
+        
     
     private func setUpUI(){
         
         view.backgroundColor = .white
         view.addSubview(emailTextField)
+        view.addSubview(activityIndicator)
     
-        emailTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.emailTextFieldTopMargin).isActive = true
-        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.emailTextFieldHorizontalPadding).isActive = true
-        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.emailTextFieldHorizontalPadding).isActive = true
+        NSLayoutConstraint.activate([
+            emailTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.textFieldTopMargin),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+    
          
     }
     
@@ -80,14 +78,16 @@ final class HomeScreenViewController: UIViewController {
         
         //setup closure to update the indicator
         homeVM.updateLoadingStatus = { [weak self] isLoading in
+            guard let self = self else { return }
+            
             if isLoading {
-                self?.activityIndicator.startAnimating()
-                self?.view.isUserInteractionEnabled = false
-                self?.navigationController?.navigationBar.isUserInteractionEnabled = false
+                self.activityIndicator.startAnimating()
+                self.view.isUserInteractionEnabled = false
+                self.navigationController?.navigationBar.isUserInteractionEnabled = false
             } else {
-                self?.activityIndicator.stopAnimating()
-                self?.view.isUserInteractionEnabled = true
-                self?.navigationController?.navigationBar.isUserInteractionEnabled = true
+                self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                self.navigationController?.navigationBar.isUserInteractionEnabled = true
             }
         }
         

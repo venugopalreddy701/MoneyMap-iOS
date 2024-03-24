@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KeyChainConstants{
+struct KeyChainConstants {
     
     static let accessTokenService = "com.moneymap.accessToken"
     static let refreshTokenService = "com.moneymap.refreshToken"

@@ -57,10 +57,13 @@ final class UserWebService {
             return
         }
 
-        guard let accessToken = keychainHelper.read(service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount).flatMap({ String(data: $0, encoding: .utf8) }),
-              let refreshToken = keychainHelper.read(service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount).flatMap({ String(data: $0, encoding: .utf8) }) else {
+        guard let accessToken = keychainHelper.readAsString(service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount),
+              let refreshToken = keychainHelper.readAsString(service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
+        else {
+            
             completion(.failure(NSError(domain: "No values in Keychain, redirect to login", code: -1, userInfo: nil)))
             return
+            
         }
 
         var request = URLRequest(url: urlString)

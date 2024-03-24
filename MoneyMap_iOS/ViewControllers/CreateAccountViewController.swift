@@ -71,6 +71,8 @@ final class CreateAccountViewController: UIViewController {
     
     private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
     
@@ -80,15 +82,8 @@ final class CreateAccountViewController: UIViewController {
         title = createAccountVM.title
         setUpUI()
         bindViewModel()
-        setupActivityIndicator()
     }
     
-    func setupActivityIndicator(){
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
-     
-    }
     
     func bindViewModel() {
 
@@ -100,14 +95,16 @@ final class CreateAccountViewController: UIViewController {
         
         //setup closure to update the indicator
         createAccountVM.updateLoadingStatus = { [weak self] isLoading in
+            guard let self = self else { return }
+            
             if isLoading {
-                self?.activityIndicator.startAnimating()
-                self?.view.isUserInteractionEnabled = false
-                self?.navigationController?.navigationBar.isUserInteractionEnabled = false
+                self.activityIndicator.startAnimating()
+                self.view.isUserInteractionEnabled = false
+                self.navigationController?.navigationBar.isUserInteractionEnabled = false
             } else {
-                self?.activityIndicator.stopAnimating()
-                self?.view.isUserInteractionEnabled = true
-                self?.navigationController?.navigationBar.isUserInteractionEnabled = true
+                self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                self.navigationController?.navigationBar.isUserInteractionEnabled = true
             }
         }
         
@@ -132,32 +129,44 @@ final class CreateAccountViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(confirmPasswordTextField)
         view.addSubview(registerButton)
+        view.addSubview(activityIndicator)
         
-        profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: LayoutConstants.profileImageTopMargin).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: LayoutConstants.profileImageSize).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: LayoutConstants.profileImageSize).isActive = true
-        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
-        editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: LayoutConstants.editProfileButtonTopMargin).isActive = true
-        editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
-        emailTextField.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: LayoutConstants.textFieldTopMargin).isActive = true
-        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
-        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
-
-        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing).isActive = true
-        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
-        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
-
-        confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing).isActive = true
-        confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
-        confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
-
-        registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing).isActive = true
-        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding).isActive = true
-        registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding).isActive = true
-        registerButton.heightAnchor.constraint(equalToConstant: LayoutConstants.registerButtonHeight).isActive = true
-
+        NSLayoutConstraint.activate([
+            // Constraints for profileImageView
+            profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: LayoutConstants.imageTopMargin),
+            profileImageView.widthAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
+            profileImageView.heightAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
+            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            // Constraints for editProfileImageButton
+            editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
+            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            // Constraints for emailTextField
+            emailTextField.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: LayoutConstants.textFieldTopMargin),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            
+            // Constraints for passwordTextField
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            
+            // Constraints for confirmPasswordTextField
+            confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
+            confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
+            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            
+            // Constraints for registerButton
+            registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
+            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
+            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            registerButton.heightAnchor.constraint(equalToConstant: LayoutConstants.buttonHeight),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self

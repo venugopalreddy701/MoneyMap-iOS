@@ -80,6 +80,14 @@ final class KeychainHelper {
         // Delete item from keychain
         SecItemDelete(query)
     }
+    
+    func readAsString(service: String, account: String)->String? {
+        
+        return read(service: service, account: account).flatMap({ String(data: $0, encoding: .utf8) })
+        
+    }
+    
+    
 }
 
 extension KeychainHelper {

@@ -15,22 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        let keychainHelper = KeychainHelper.standard
-        let accessTokenExists = keychainHelper.hasToken(service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
-        let refreshTokenExists = keychainHelper.hasToken(service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
-
         let window = UIWindow(windowScene:windowScene)
         
-        if accessTokenExists && refreshTokenExists {
-            let navigationController = UINavigationController(rootViewController: HomeScreenViewController())
-            window.rootViewController = navigationController
-        }
-        else{
-            let navigationController = UINavigationController(rootViewController: LoginViewController())
-            window.rootViewController = navigationController
-        }
+        let navigationController:UINavigationController
         
+        if AuthenticationHelper().checkIfAlreadyLoggedIn() {
+            navigationController = UINavigationController(rootViewController: HomeScreenViewController())
+        }
+        else {
+            navigationController = UINavigationController(rootViewController: LoginViewController())
+        }
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
         

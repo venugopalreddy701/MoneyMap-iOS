@@ -7,19 +7,19 @@
 
 import Foundation
 
-final class AuthWebService{
+final class AuthWebService {
     
     private let baseURL = "http://localhost:8082"
+    private let keychainHelper = KeychainHelper.standard
     
-    func authenticateUser(email:String , password:String,completion: @escaping (Result<(accessToken: String, refreshToken: String), Error>) -> Void)
+    func authenticateUser(userInfo: UserInfo,completion: @escaping (Result<TokenInfo, Error>) -> Void)
     {
         guard let urlString = URL(string: baseURL + "/login") else {
             completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
             return
         }
         
-        
-        let requestBody: [String: String] = ["email": email, "password": password]
+        let requestBody: [String: String] = ["email": userInfo.email, "password": userInfo.password]
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBody) else {
             completion(.failure(NSError(domain: "JSON Serialization Error", code: -1, userInfo: nil)))
@@ -39,25 +39,24 @@ final class AuthWebService{
             }
             
             if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode){
-                
-                if let data = data,
-                   let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                   let accessToken = json["accessToken"] as? String ,
-                   let refreshToken = json["refreshToken"] as? String {
-                    completion(.success((accessToken: accessToken, refreshToken: refreshToken)))
-                } else {
-                    completion(.failure(NSError(domain: "Invalid response data", code: -1, userInfo: nil)))
+                if let data = data {
+                        do {
+                            let json = try JSONDecoder().decode(TokenInfo.self, from: data)
+                            
+                            self.keychainHelper.save(json.accessToken, service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
+                            self.keychainHelper.save(json.refreshToken, service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
+                            
+                            completion(.success(json))
+                        } catch {
+                            completion(.failure(error))
+                        }
                 }
-                
             }
             else
             {
                 completion(.failure(NSError(domain: "Invalid response", code: (response as? HTTPURLResponse)?.statusCode ?? -1, userInfo: nil)))
                 return
             }
-            
-            
-            
             
         }.resume()
         

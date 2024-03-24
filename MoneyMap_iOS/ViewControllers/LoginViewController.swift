@@ -55,6 +55,8 @@ final class LoginViewController: UIViewController {
     
     private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
     
@@ -64,15 +66,8 @@ final class LoginViewController: UIViewController {
         title = loginVM.title
         setUpUI()
         bindViewModel()
-        setupActivityIndicator()
     }
     
-    func setupActivityIndicator(){
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
-     
-    }
   
     private func setUpUI(){
         view.backgroundColor = .white
@@ -84,25 +79,33 @@ final class LoginViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
         view.addSubview(registerButton)
+        view.addSubview(activityIndicator)
         
-        
-        emailTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.emailTextFieldTopMargin).isActive = true
-        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.emailTextFieldHorizontalPadding).isActive = true
-        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.emailTextFieldHorizontalPadding).isActive = true
+        NSLayoutConstraint.activate([
+            // Constraints for emailTextField
+            emailTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.textFieldTopMargin),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
             
-        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.passwordTextFieldTopMargin).isActive = true
-        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.passwordTextFieldHorizontalPadding).isActive = true
-        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.passwordTextFieldHorizontalPadding).isActive = true
+            // Constraints for passwordTextField
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldTopMargin),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
             
-        loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.loginButtonTopMargin).isActive = true
-        loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.loginButtonHorizontalPadding).isActive = true
-        loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.loginButtonHorizontalPadding).isActive = true
+            // Constraints for loginButton
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.buttonHorizontalPadding),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.buttonHorizontalPadding),
             
-        registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant:LayoutConstants.registerButtonTopMargin).isActive = true
-        registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.registerButtonHorizontalPadding).isActive = true
-        registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.registerButtonHorizontalPadding).isActive = true
-        
-        
+            // Constraints for registerButton
+            registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
+            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.buttonHorizontalPadding),
+            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.buttonHorizontalPadding),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+       
        
     }
     
@@ -110,15 +113,7 @@ final class LoginViewController: UIViewController {
     
     @objc private func loginButtonTapped(_ sender: UIButton) {
         
-        guard let email = emailTextField.text, !email.isEmpty else {
-            showAlert(message: "Please enter your email.")
-            return
-          }
-        guard let password = passwordTextField.text, !password.isEmpty else {
-            showAlert(message: "Please enter your password.")
-            return
-          }
-        loginVM.loginUser(email: email, password: password)
+        loginVM.loginUser(email: emailTextField.text, password: passwordTextField.text)
      
     }
     
@@ -135,7 +130,7 @@ final class LoginViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func bindViewModel() {
+    private func bindViewModel() {
 
         loginVM.userMessage.bind { [weak self] message in
             if let message = message {
@@ -145,14 +140,15 @@ final class LoginViewController: UIViewController {
         
         //setup closure to update the indicator
         loginVM.updateLoadingStatus = { [weak self] isLoading in
+            guard let self = self else { return }
             if isLoading {
-                self?.activityIndicator.startAnimating()
-                self?.view.isUserInteractionEnabled = false
-                self?.navigationController?.navigationBar.isUserInteractionEnabled = false
+                self.activityIndicator.startAnimating()
+                self.view.isUserInteractionEnabled = false
+                self.navigationController?.navigationBar.isUserInteractionEnabled = false
             } else {
-                self?.activityIndicator.stopAnimating()
-                self?.view.isUserInteractionEnabled = true
-                self?.navigationController?.navigationBar.isUserInteractionEnabled = true
+                self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                self.navigationController?.navigationBar.isUserInteractionEnabled = true
             }
         }
         
