@@ -8,12 +8,15 @@
 import UIKit
 
 struct LayoutConstants {
-    static let profileImageTopMargin: CGFloat = 40
-    static let profileImageSize: CGFloat = 200
-    static let editProfileButtonTopMargin: CGFloat = 10
-    static let textFieldTopMargin: CGFloat = 30
+    
+    static let imageTopMargin: CGFloat = 40
+    static let imageSize: CGFloat = 200
+    static let buttonTopMargin: CGFloat = 10
+    static let textFieldTopMargin: CGFloat = 100
     static let textFieldSpacing: CGFloat = 20
     static let textFieldHorizontalPadding: CGFloat = 20
-    static let registerButtonHeight: CGFloat = 44
+    static let buttonHeight: CGFloat = 44
+    static let buttonHorizontalPadding: CGFloat = 20
+    
 }
 
