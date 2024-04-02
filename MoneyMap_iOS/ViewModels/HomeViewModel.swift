@@ -28,20 +28,21 @@ final class HomeViewModel{
         updateLoadingStatus?(true)
         
         UserWebService.getUserDetails(){[weak self] result in
+            guard let self = self else { return }
             
             DispatchQueue.main.async {
                 //close progress indicator
-                self?.updateLoadingStatus?(false)
+                self.updateLoadingStatus?(false)
                 
                 switch result {
                 case .success(let email):
-                    self?.userEmail.value = email
-                    self?.userMessage.value = "User Details fetch successfully"
+                    self.userEmail.value = email
+                    self.userMessage.value = "User Details fetch successfully"
                 case .failure(let error):
-                    self?.isAuthenticated.value = false
-                    self?.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
+                    self.isAuthenticated.value = false
+                    self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
                 }
-                self?.updateLoadingStatus?(false)
+                self.updateLoadingStatus?(false)
             }
         }
      

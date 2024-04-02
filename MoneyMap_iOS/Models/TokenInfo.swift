@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct TokenInfo : Codable {
+struct TokenInfo : Decodable {
     
-    let accessToken: String?
-    let refreshToken: String?
+    let accessToken: String
+    let refreshToken: String
     let tokenType: String
     let id: Int
     let email: String?

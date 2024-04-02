@@ -63,13 +63,15 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = loginVM.title
         setUpUI()
         bindViewModel()
     }
     
   
     private func setUpUI(){
+        
+        title = loginVM.title
+        
         view.backgroundColor = .white
         
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)

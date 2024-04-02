@@ -32,7 +32,6 @@ final class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = homeVM.title
         setUpUI()
         bindViewModel()
         homeVM.loadUserDetails()
@@ -40,6 +39,8 @@ final class HomeScreenViewController: UIViewController {
         
     
     private func setUpUI(){
+        
+        title = homeVM.title
         
         view.backgroundColor = .white
         view.addSubview(emailTextField)
@@ -71,8 +72,10 @@ final class HomeScreenViewController: UIViewController {
     private func bindViewModel() {
 
         homeVM.userMessage.bind { [weak self] message in
+            guard let self = self else { return }
+            
             if let message = message {
-                self?.showAlert(message: message)
+                self.showAlert(message: message)
             }
         }
         

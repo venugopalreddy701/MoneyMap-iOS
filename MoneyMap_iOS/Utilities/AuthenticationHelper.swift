@@ -6,19 +6,14 @@
 //
 
 import Foundation
-class AuthenticationHelper {
+final class AuthenticationHelper {
     
-    func checkIfAlreadyLoggedIn()-> Bool {
+    func isUserAlreadyLoggedIn()-> Bool {
         let keychainHelper = KeychainHelper.standard
         let accessTokenExists = keychainHelper.hasToken(service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
         let refreshTokenExists = keychainHelper.hasToken(service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
         
-        if accessTokenExists && refreshTokenExists {
-            return true
-        }
-        else {
-            return false
-        }
+        return  accessTokenExists && refreshTokenExists
 
     }
 }

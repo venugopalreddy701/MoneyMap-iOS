@@ -79,7 +79,6 @@ final class CreateAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = createAccountVM.title
         setUpUI()
         bindViewModel()
     }
@@ -117,6 +116,8 @@ final class CreateAccountViewController: UIViewController {
     }
     
     func setUpUI() {
+        
+        title = createAccountVM.title
 
         view.backgroundColor = .white
 
@@ -136,36 +137,42 @@ final class CreateAccountViewController: UIViewController {
             profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: LayoutConstants.imageTopMargin),
             profileImageView.widthAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
             profileImageView.heightAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
-            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
             
+        NSLayoutConstraint.activate([
             // Constraints for editProfileImageButton
             editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
-            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
             
+        NSLayoutConstraint.activate([
             // Constraints for emailTextField
             emailTextField.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: LayoutConstants.textFieldTopMargin),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
             
+        NSLayoutConstraint.activate([
             // Constraints for passwordTextField
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
             
+        NSLayoutConstraint.activate([
             // Constraints for confirmPasswordTextField
             confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
             confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
             
+        NSLayoutConstraint.activate([
             // Constraints for registerButton
             registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
-            registerButton.heightAnchor.constraint(equalToConstant: LayoutConstants.buttonHeight),
+            registerButton.heightAnchor.constraint(equalToConstant: LayoutConstants.buttonHeight)])
             
+        
+        NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
         
         emailTextField.delegate = self
         passwordTextField.delegate = self

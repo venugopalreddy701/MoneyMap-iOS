@@ -41,9 +41,9 @@ final class LoginViewModel{
                     self?.updateLoadingStatus?(false)
                     switch result {
                     case .success(let tokenInfo):
-                        // add loggers in future for tokens 
-                        if let accessTokenData = tokenInfo.accessToken?.data(using: .utf8),
-                           let refreshTokenData = tokenInfo.refreshToken?.data(using: .utf8) {
+                        // add loggers in future for tokens
+                        if let accessTokenData = tokenInfo.accessToken.data(using: .utf8),
+                           let refreshTokenData = tokenInfo.refreshToken.data(using: .utf8) {
                             self?.keychainHelper.save(accessTokenData, service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
                             self?.keychainHelper.save(refreshTokenData, service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
                             

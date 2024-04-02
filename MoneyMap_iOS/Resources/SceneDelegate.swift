@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationController:UINavigationController
         
-        if AuthenticationHelper().checkIfAlreadyLoggedIn() {
+        if AuthenticationHelper().isUserAlreadyLoggedIn() {
             navigationController = UINavigationController(rootViewController: HomeScreenViewController())
         }
         else {
