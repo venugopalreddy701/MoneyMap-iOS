@@ -20,8 +20,8 @@ extension CreateAccountViewController: UIImagePickerControllerDelegate, UINaviga
         picker.dismiss(animated: true, completion: nil)
     }
 
+    // Hide the keyboard when return key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Hide the keyboard when return key is pressed
         textField.resignFirstResponder()
         return true
     }

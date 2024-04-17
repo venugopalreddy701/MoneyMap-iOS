@@ -54,24 +54,22 @@ class TransactionTableViewCell : UITableViewCell {
     
     private func applyConstraints() {
            NSLayoutConstraint.activate([
-               // Title Label Constraints
                titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-               titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+               titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)])
                
-               // Subtitle Label Constraints
+        NSLayoutConstraint.activate([
                subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
                subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-               subtitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+               subtitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)])
                
-               // Amount Label Constraints
+        NSLayoutConstraint.activate([
                amountLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-               amountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+               amountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)])
                
-               // Date Label Constraints
+        NSLayoutConstraint.activate([
                dateLabel.topAnchor.constraint(equalTo: amountLabel.bottomAnchor, constant: 4),
                dateLabel.trailingAnchor.constraint(equalTo: amountLabel.trailingAnchor),
-               dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-           ])
+               dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)])
        }
     
     required init?(coder: NSCoder) {

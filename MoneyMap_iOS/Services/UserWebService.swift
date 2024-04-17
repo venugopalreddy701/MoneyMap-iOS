@@ -275,8 +275,7 @@ final class UserWebService {
                 
                 completion(.success(true))
             } else {
-                // Other errors
-                print("Line 276")
+                
                 completion(.failure(NSError(domain: "Invalid response", code: httpResponse.statusCode, userInfo: nil)))
             }
         }.resume()

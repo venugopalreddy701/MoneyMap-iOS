@@ -172,10 +172,7 @@ final class LoginViewController: UIViewController {
     
     
     private func redirectToHome() {
-      
-//        let homeViewController = ProfileViewController()
-//        navigationController?.setViewControllers([homeViewController], animated: true)
-// 
+
         let mainAppTabBarVC = TabBarViewController()
         mainAppTabBarVC.modalPresentationStyle = .fullScreen
         present(mainAppTabBarVC,animated: true)

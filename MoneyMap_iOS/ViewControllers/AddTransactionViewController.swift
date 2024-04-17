@@ -77,24 +77,28 @@ final class AddTransactionViewController : UIViewController{
             transactionToggleButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 30),
             transactionToggleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 30),
             transactionToggleButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            transactionToggleButton.heightAnchor.constraint(equalToConstant: 32),
-            
+            transactionToggleButton.heightAnchor.constraint(equalToConstant: 32)])
+        
+        
+        NSLayoutConstraint.activate([
             descriptionTextField.topAnchor.constraint(equalTo: transactionToggleButton.bottomAnchor, constant: 30),
             descriptionTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 30),
             descriptionTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            descriptionTextField.heightAnchor.constraint(equalToConstant: 32),
-            
+            descriptionTextField.heightAnchor.constraint(equalToConstant: 32)])
+        
+        
+        NSLayoutConstraint.activate([
             amountTextField.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 30),
             amountTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 30),
             amountTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            amountTextField.heightAnchor.constraint(equalToConstant: 32),
-            
+            amountTextField.heightAnchor.constraint(equalToConstant: 32)])
+        
+        
+        NSLayoutConstraint.activate([
             addTransactionButton.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 30),
             addTransactionButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 30),
             addTransactionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             addTransactionButton.heightAnchor.constraint(equalToConstant: 32)
-            
-            
                 ])
         
         }

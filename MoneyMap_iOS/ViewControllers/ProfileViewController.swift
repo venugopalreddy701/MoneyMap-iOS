@@ -11,7 +11,7 @@ final class ProfileViewController: UIViewController {
 
     private let profileVM = ProfileViewModel()
     
-    let profileImageView: UIImageView = {
+     let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
         imageView.contentMode = .scaleAspectFill
@@ -117,25 +117,30 @@ final class ProfileViewController: UIViewController {
             profileImageView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.imageTopMargin),
             profileImageView.widthAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
             profileImageView.heightAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
-            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
             
+        NSLayoutConstraint.activate([
             editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
-            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
             
-            
+        NSLayoutConstraint.activate([
             emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
+        
+        
             
-            
+        NSLayoutConstraint.activate([
             saveButton.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: 35),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
             
+        NSLayoutConstraint.activate([
             signOutButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 35),
             signOutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            signOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
-            
+            signOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
+        
+        NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
