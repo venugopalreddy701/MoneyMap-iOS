@@ -133,7 +133,6 @@ final class TransactionViewController : UIViewController, UITableViewDataSource,
         let addTransactionViewController = AddTransactionViewController()
         //update here if any transaction is called
         addTransactionViewController.onTransactionAdded = { [weak self] in
-            print("inside update new transactions method")
                 self?.fetchTransactions()
             }
         
@@ -172,7 +171,6 @@ final class TransactionViewController : UIViewController, UITableViewDataSource,
     
     private func bindViewModel() {
         transactionListVM.earnedTotal.bind{ [weak self] earnedTotalValue in
-            print("updating the value of earningsView in VC to \(String(describing: earnedTotalValue))")
             if let earnedTotalValue = earnedTotalValue {
                 self?.earningsView.setAmount(earnedTotalValue)
             }

@@ -52,7 +52,7 @@ final class TransactionListViewModel{
                     }
                     completion()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    
                     self?.isAuthenticated.value = false
                     completion()
                 }
@@ -74,7 +74,7 @@ final class TransactionListViewModel{
                 }
                 
             }
-            print("Inside calculate func: \(earnings) \(spent) ")
+            
         
         DispatchQueue.main.async {
             self.earnedTotal.value = earnings
@@ -90,7 +90,7 @@ final class TransactionListViewModel{
         updateLoadingStatus?(true)
         
         let idToDelete = transactionViewModels[index].id
-        print("Id to delete:\(idToDelete)")
+        
         transactionViewModels.remove(at: index)
  
         
@@ -98,10 +98,10 @@ final class TransactionListViewModel{
             self!.updateLoadingStatus?(false)
             switch result {
             case .success(_):
-                   print("Successfully deleted transaction")
+                   break
                 
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                
                 self?.isAuthenticated.value = false
               
             }

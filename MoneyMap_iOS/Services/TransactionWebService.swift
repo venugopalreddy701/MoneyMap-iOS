@@ -232,7 +232,6 @@ final class TransactionWebService{
                     }
                 } else if (200...299).contains(httpResponse.statusCode) {
                     // Request succeeded
-                    print("Deleting transaction with id:\(id)")
                     completion(.success(true))
                 } else {
                     // Other errors
