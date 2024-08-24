@@ -25,6 +25,10 @@
 
 
 
+## Get in touch 💬
+
+* [👥 Linkedin](https://www.linkedin.com/in/venugopalreddy701)
+
 
 
 
