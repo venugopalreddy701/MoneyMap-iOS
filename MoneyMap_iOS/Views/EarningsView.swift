@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EarningsView: UIView {
+final class EarningsView: UIView {
     
     private let amountLabel: UILabel = {
         let label = UILabel()
@@ -25,10 +25,10 @@ class EarningsView: UIView {
         return imageView
     }()
     
-    init(amount: String) {
+    init() {
         super.init(frame: .zero)
         setupView()
-        amountLabel.text = amount
+        
     }
     
     required init?(coder: NSCoder) {

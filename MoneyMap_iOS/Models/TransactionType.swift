@@ -9,7 +9,7 @@ import Foundation
 
 enum TransactionType:String , Codable{
     
-    case earned = "earned"
-    case spent = "spent"
+    case earned
+    case spent 
     
 }

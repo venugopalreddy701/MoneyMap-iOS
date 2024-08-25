@@ -13,7 +13,7 @@ final class ProfileViewModel{
     
     var userMessage: Observable<String?> = Observable(nil)
     
-    var isAuthenticated: Observable<Bool?> = Observable(true)
+    var isAuthenticated: Observable<Bool> = Observable(true)
     
     var updateLoadingStatus: ((Bool) -> Void)?
     
@@ -45,7 +45,7 @@ final class ProfileViewModel{
                     self.isAuthenticated.value = false
                     self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
                 }
-                self.updateLoadingStatus?(false)
+                
             }
         }
      
@@ -70,7 +70,7 @@ final class ProfileViewModel{
                     
                     self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
                 }
-                self.updateLoadingStatus?(false)
+                
             }
         }
         
@@ -83,7 +83,7 @@ final class ProfileViewModel{
         //start progress indicator
         updateLoadingStatus?(true)
         
-        guard let profilePicture = profilePicture else
+        guard let profilePicture else
         {
             self.userMessage.value = "Pic error"
             return

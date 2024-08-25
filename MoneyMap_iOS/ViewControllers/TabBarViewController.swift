@@ -12,7 +12,6 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.viewDidLoad()
        
         let transactionVC = TransactionViewController()
         let profileVC = ProfileViewController()

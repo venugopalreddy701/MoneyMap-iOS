@@ -11,15 +11,15 @@ final class TransactionListViewModel{
     
     let title = "Transactions"
     
-    var isAuthenticated: Observable<Bool?> = Observable(true)
+    var isAuthenticated: Observable<Bool> = Observable(true)
     
     var updateLoadingStatus: ((Bool) -> Void)?
     
     private var transactionViewModels = [TransactionViewModel]()
     
-    var earnedTotal:Observable<Int?> = Observable(0)
+    var earnedTotal:Observable<Int> = Observable(0)
     
-    var spentTotal:Observable<Int?> = Observable(0)
+    var spentTotal:Observable<Int> = Observable(0)
     
     
     func numberOfRows(_ section: Int) -> Int {
@@ -50,12 +50,13 @@ final class TransactionListViewModel{
                                              amount: transaction.amount)
                         
                     }
-                    completion()
+                    
                 case .failure(let error):
                     
                     self?.isAuthenticated.value = false
-                    completion()
+                    
                 }
+                completion()
                 
             }
         }
@@ -95,14 +96,15 @@ final class TransactionListViewModel{
  
         
         TransactionWebService.removeTransaction(id:idToDelete){ [weak self] result in
-            self!.updateLoadingStatus?(false)
+            guard let self = self else { return }
+            self.updateLoadingStatus?(false)
             switch result {
             case .success(_):
                    break
                 
             case .failure(_):
                 
-                self?.isAuthenticated.value = false
+                self.isAuthenticated.value = false
               
             }
            
@@ -122,14 +124,14 @@ final class TransactionViewModel {
     let id: Int
     let type: TransactionType
     let description: String
-    let date: String
+    let dateString: String
     let amount: Int
     
     init(id:Int,type: TransactionType, description: String, date: String, amount: Int) {
         self.id = id
         self.type = type
         self.description = description
-        self.date = date
+        self.dateString = date
         self.amount = amount
     }
     

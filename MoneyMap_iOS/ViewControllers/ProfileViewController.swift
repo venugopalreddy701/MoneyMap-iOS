@@ -208,7 +208,7 @@ final class ProfileViewController: UIViewController {
         profileVM.profilePicData.bind{ [weak self] profileData in
             
             if let profileData = profileData {
-                self?.profileImageView.image = UIImage.fromBase64String(profileData)
+                self?.profileImageView.image = String.fromBase64String(profileData)
             }
             
             

@@ -19,18 +19,18 @@ final class TransactionViewController : UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.identifier, for: indexPath) as! TransactionTableViewCell
         let vm = transactionListVM.modelAt(indexPath.row)
-        cell.configure(with: vm.description, subtitle: vm.type, amount: "\(vm.amount)", date: vm.date)
+        cell.configure(with: vm.description, subtitle: vm.type, amount: "\(vm.amount)", date: vm.dateString)
         return cell
     }
     
     private let earningsView:EarningsView = {
-        let earningsView = EarningsView(amount: "$0")
+        let earningsView = EarningsView()
         earningsView.translatesAutoresizingMaskIntoConstraints = false
         return earningsView
     }()
     
     private let spentView:SpentView = {
-        let spentView = SpentView(amount: "$0")
+        let spentView = SpentView()
         spentView.translatesAutoresizingMaskIntoConstraints = false
         return spentView
     }()
@@ -128,7 +128,7 @@ final class TransactionViewController : UIViewController, UITableViewDataSource,
         
     }
     
-    @objc func addButtonTapped() {
+    @objc private func addButtonTapped() {
         
         let addTransactionViewController = AddTransactionViewController()
         //update here if any transaction is called
@@ -171,15 +171,15 @@ final class TransactionViewController : UIViewController, UITableViewDataSource,
     
     private func bindViewModel() {
         transactionListVM.earnedTotal.bind{ [weak self] earnedTotalValue in
-            if let earnedTotalValue = earnedTotalValue {
+           
                 self?.earningsView.setAmount(earnedTotalValue)
-            }
+           
         }
         
         transactionListVM.spentTotal.bind{ [weak self] spentTotalValue in
-            if let spentTotalValue = spentTotalValue {
+            
                 self?.spentView.setAmount(spentTotalValue)
-            }
+            
         }
         
         transactionListVM.isAuthenticated.bind{ [weak self] state in

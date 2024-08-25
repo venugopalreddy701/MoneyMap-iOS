@@ -120,10 +120,16 @@ final class AddTransactionViewController : UIViewController{
         }
         let transactionType: TransactionType = transactionToggleButton.selectedSegmentIndex == 0 ? .earned : .spent
         
-        addTransactionVM.addTransaction(description: description, amount: amount, transactionType: transactionType)
         
-        //update in transactionviewcontroller
-        onTransactionAdded?()
+        DispatchQueue.global().async { [self] in
+            
+            addTransactionVM.addTransaction(description: description, amount: amount, transactionType: transactionType)
+            //update in transactionviewcontroller
+            onTransactionAdded?()
+            
+        }
+        
+        
         
         
     }

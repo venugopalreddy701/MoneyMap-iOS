@@ -18,6 +18,7 @@ final class AddTransactionViewModel{
         
         TransactionWebService.addTransaction(addTransactionInfo: addTransactionInfo){ [weak self] result in
             DispatchQueue.main.async {
+                
                 switch result {
                 case .success(_):
                     self?.userMessage.value = "Added successfully"
@@ -26,6 +27,7 @@ final class AddTransactionViewModel{
                     
                     
                 }
+                
                 
             }
             

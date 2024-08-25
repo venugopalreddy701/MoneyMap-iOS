@@ -14,11 +14,7 @@ extension UIImage {
         return imageData.base64EncodedString(options: [])
     }
     
-    static func fromBase64String(_ base64String: String) -> UIImage? {
-           guard let imageData = Data(base64Encoded: base64String) else { return nil }
-           return UIImage(data: imageData)
-       }
-    
+   
     
 }
 

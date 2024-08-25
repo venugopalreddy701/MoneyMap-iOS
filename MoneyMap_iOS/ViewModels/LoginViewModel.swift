@@ -13,7 +13,7 @@ final class LoginViewModel{
     
     var userMessage: Observable<String?> = Observable(nil)
     
-    var isAuthenticated: Observable<Bool?> = Observable(false)
+    var isAuthenticated: Observable<Bool> = Observable(false)
     
     var updateLoadingStatus: ((Bool) -> Void)?
     
