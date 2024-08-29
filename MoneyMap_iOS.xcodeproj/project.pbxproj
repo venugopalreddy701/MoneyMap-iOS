@@ -10,7 +10,6 @@
 		1F731F622BBBC4CF00FB2AC3 /* KeyChainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F731F612BBBC4CF00FB2AC3 /* KeyChainConstants.swift */; };
 		1F731F642BBBC58200FB2AC3 /* TokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F731F632BBBC58200FB2AC3 /* TokenInfo.swift */; };
 		1F731F662BBBC5B000FB2AC3 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F731F652BBBC5B000FB2AC3 /* UserInfo.swift */; };
-		1F731F682BBBC60700FB2AC3 /* AuthWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F731F672BBBC60700FB2AC3 /* AuthWebService.swift */; };
 		1F731F6B2BBBC68700FB2AC3 /* AuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F731F6A2BBBC68700FB2AC3 /* AuthenticationHelper.swift */; };
 		1F731F6D2BBBC6B600FB2AC3 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F731F6C2BBBC6B600FB2AC3 /* KeychainHelper.swift */; };
 		1F731F6F2BBBC72600FB2AC3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F731F6E2BBBC72600FB2AC3 /* ProfileViewController.swift */; };
@@ -23,7 +22,6 @@
 		1FCCECA52BBEBC0B0075E1B3 /* SpentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCECA42BBEBC0B0075E1B3 /* SpentView.swift */; };
 		1FCCECA72BC17AB40075E1B3 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCECA62BC17AB40075E1B3 /* TransactionTableViewCell.swift */; };
 		1FCCECA92BC187960075E1B3 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCECA82BC187960075E1B3 /* Transaction.swift */; };
-		1FCCECAB2BC187CF0075E1B3 /* TransactionWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCECAA2BC187CF0075E1B3 /* TransactionWebService.swift */; };
 		1FCCECAD2BC27C4E0075E1B3 /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCECAC2BC27C4E0075E1B3 /* TransactionType.swift */; };
 		1FCCECAF2BC2DE4F0075E1B3 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCECAE2BC2DE4F0075E1B3 /* AddTransactionViewController.swift */; };
 		1FCCECB12BC2E18D0075E1B3 /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCECB02BC2E18D0075E1B3 /* AddTransactionViewModel.swift */; };
@@ -47,7 +45,6 @@
 		1FFE28D92B89C3A100A40BED /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28D82B89C3A100A40BED /* CreateAccountViewModel.swift */; };
 		1FFE28DC2B89C3D700A40BED /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28DB2B89C3D700A40BED /* CreateAccountViewController.swift */; };
 		1FFE28DE2B89C3F200A40BED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28DD2B89C3F200A40BED /* LoginViewController.swift */; };
-		1FFE28E12B89C45000A40BED /* UserWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28E02B89C45000A40BED /* UserWebService.swift */; };
 		1FFE28E62B89C49A00A40BED /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28E52B89C49A00A40BED /* Observable.swift */; };
 		1FFE28E92B89C4C400A40BED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28E82B89C4C400A40BED /* User.swift */; };
 		1FFE28EC2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE28EB2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift */; };
@@ -76,7 +73,6 @@
 		1F731F612BBBC4CF00FB2AC3 /* KeyChainConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainConstants.swift; sourceTree = "<group>"; };
 		1F731F632BBBC58200FB2AC3 /* TokenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInfo.swift; sourceTree = "<group>"; };
 		1F731F652BBBC5B000FB2AC3 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		1F731F672BBBC60700FB2AC3 /* AuthWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWebService.swift; sourceTree = "<group>"; };
 		1F731F6A2BBBC68700FB2AC3 /* AuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHelper.swift; sourceTree = "<group>"; };
 		1F731F6C2BBBC6B600FB2AC3 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		1F731F6E2BBBC72600FB2AC3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +85,6 @@
 		1FCCECA42BBEBC0B0075E1B3 /* SpentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpentView.swift; sourceTree = "<group>"; };
 		1FCCECA62BC17AB40075E1B3 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		1FCCECA82BC187960075E1B3 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		1FCCECAA2BC187CF0075E1B3 /* TransactionWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionWebService.swift; sourceTree = "<group>"; };
 		1FCCECAC2BC27C4E0075E1B3 /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		1FCCECAE2BC2DE4F0075E1B3 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		1FCCECB02BC2E18D0075E1B3 /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
@@ -117,7 +112,6 @@
 		1FFE28D82B89C3A100A40BED /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		1FFE28DB2B89C3D700A40BED /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		1FFE28DD2B89C3F200A40BED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1FFE28E02B89C45000A40BED /* UserWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWebService.swift; sourceTree = "<group>"; };
 		1FFE28E52B89C49A00A40BED /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		1FFE28E82B89C4C400A40BED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1FFE28EB2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewControllerImagePickerTextFieldExtension.swift; sourceTree = "<group>"; };
@@ -157,6 +151,14 @@
 				1F731F6C2BBBC6B600FB2AC3 /* KeychainHelper.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1FFD10062C80DC9300DFB0C5 /* APIResponse */ = {
+			isa = PBXGroup;
+			children = (
+				1FE260462C7CD0F20058843F /* UserCreationResponse.swift */,
+			);
+			path = APIResponse;
 			sourceTree = "<group>";
 		};
 		1FFE28992B89C1B700A40BED = {
@@ -263,14 +265,11 @@
 		1FFE28DF2B89C43600A40BED /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1FFE28E02B89C45000A40BED /* UserWebService.swift */,
-				1F731F672BBBC60700FB2AC3 /* AuthWebService.swift */,
-				1FCCECAA2BC187CF0075E1B3 /* TransactionWebService.swift */,
+				1FFD10062C80DC9300DFB0C5 /* APIResponse */,
 				1FE2603C2C7CC28B0058843F /* HTTPMethod.swift */,
 				1FE2603E2C7CC3630058843F /* Route.swift */,
 				1FE260402C7CC3F60058843F /* NetworkService.swift */,
 				1FE260422C7CC79C0058843F /* AppError.swift */,
-				1FE260462C7CD0F20058843F /* UserCreationResponse.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -459,8 +458,6 @@
 				1FCCECA72BC17AB40075E1B3 /* TransactionTableViewCell.swift in Sources */,
 				1FFDA4172C79DB53000A22D2 /* String+Extension.swift in Sources */,
 				1FE260492C8052650058843F /* TransactionList.swift in Sources */,
-				1FCCECAB2BC187CF0075E1B3 /* TransactionWebService.swift in Sources */,
-				1F731F682BBBC60700FB2AC3 /* AuthWebService.swift in Sources */,
 				1FCCECB72BC655AF0075E1B3 /* ProfileViewControllerImagePickerExtension.swift in Sources */,
 				1FFE28DC2B89C3D700A40BED /* CreateAccountViewController.swift in Sources */,
 				1F731F6F2BBBC72600FB2AC3 /* ProfileViewController.swift in Sources */,
@@ -479,7 +476,6 @@
 				1FFE28E92B89C4C400A40BED /* User.swift in Sources */,
 				1FFE28EC2B89C4F400A40BED /* CreateAccountViewControllerImagePickerTextFieldExtension.swift in Sources */,
 				1FFE28A62B89C1B700A40BED /* AppDelegate.swift in Sources */,
-				1FFE28E12B89C45000A40BED /* UserWebService.swift in Sources */,
 				1F731F662BBBC5B000FB2AC3 /* UserInfo.swift in Sources */,
 				1F731F772BBD5D4400FB2AC3 /* TransactionViewController.swift in Sources */,
 				1FE2603F2C7CC3630058843F /* Route.swift in Sources */,

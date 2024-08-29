@@ -6,7 +6,7 @@
 ### 🛠 Installation
 
 - Clone/download this repository.
-- download this backend project and run REST APIs locally.
+- download [this](https://github.com/venugopalreddy701/MoneyMap-Backend) backend project and run REST APIs locally.
 - run the app.
 
 ## 📸 Screenshots
