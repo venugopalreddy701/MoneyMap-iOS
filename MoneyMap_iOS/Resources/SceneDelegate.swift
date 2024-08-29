@@ -17,15 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene:windowScene)
         
-        let navigationController:UINavigationController
+        
         
         if AuthenticationHelper().isUserAlreadyLoggedIn() {
-            navigationController = UINavigationController(rootViewController: HomeScreenViewController())
+            window.rootViewController = TabBarViewController()
         }
         else {
+            let navigationController:UINavigationController
             navigationController = UINavigationController(rootViewController: LoginViewController())
+            window.rootViewController = navigationController
         }
-        window.rootViewController = navigationController
+        
         window.makeKeyAndVisible()
         self.window = window
         

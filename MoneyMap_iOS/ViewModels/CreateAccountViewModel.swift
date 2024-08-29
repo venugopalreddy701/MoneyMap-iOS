@@ -28,17 +28,35 @@ final class CreateAccountViewModel {
                let profilePictureString = profilePicture?.toBase64String()
                let userToCreate = User(email: email, password: password, profileImageData: profilePictureString ?? "")
               
-               UserWebService.createNewUser(userToCreate) { [weak self] result in
+//               UserWebService.createNewUser(userToCreate) { [weak self] result in
+//                   DispatchQueue.main.async {
+//                       self?.updateLoadingStatus?(false)
+//                       switch result {
+//                       case .success(_):
+//                           self?.userMessage.value = "User created successfully"
+//                       case .failure(let error):
+//                           self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
+//                       }
+//                   }
+//               }
+               
+               NetworkService.shared.createNewUser(user: userToCreate){ [weak self] result in
+                   
                    DispatchQueue.main.async {
                        self?.updateLoadingStatus?(false)
-                       switch result {
-                       case .success(_):
+                       switch result{
+                       case .success(let UserCreationResponse):
+                           print("D:Success with creating new user")
                            self?.userMessage.value = "User created successfully"
                        case .failure(let error):
                            self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
                        }
                    }
+                   
+                   
                }
+               
+               
            }
        }
     

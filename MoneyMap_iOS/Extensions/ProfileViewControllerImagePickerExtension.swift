@@ -1,13 +1,14 @@
 //
-//  CreateAccountViewControllerImagePickerTextFieldExtension.swift
-//  MoneyMap-iOS
+//  ProfileViewControllerImagePickerExtension.swift
+//  MoneyMap_iOS
 //
-//  Created by Venugopal Reddy M on 13/02/24.
+//  Created by Venugopal on 10/04/24.
 //
 
 import UIKit
 
-extension CreateAccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -20,12 +21,9 @@ extension CreateAccountViewController: UIImagePickerControllerDelegate, UINaviga
         picker.dismiss(animated: true, completion: nil)
     }
 
-    // Hide the keyboard when return key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard when return key is pressed
         textField.resignFirstResponder()
         return true
     }
 }
-
-
-

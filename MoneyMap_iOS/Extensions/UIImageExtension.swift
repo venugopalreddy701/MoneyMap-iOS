@@ -14,5 +14,7 @@ extension UIImage {
         return imageData.base64EncodedString(options: [])
     }
     
+   
+    
 }
 

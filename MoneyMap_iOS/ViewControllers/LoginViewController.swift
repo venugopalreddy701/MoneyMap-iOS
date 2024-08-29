@@ -90,7 +90,7 @@ final class LoginViewController: UIViewController {
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
             
             // Constraints for passwordTextField
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldTopMargin),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldTopMargin - 50),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
             
@@ -172,10 +172,12 @@ final class LoginViewController: UIViewController {
     
     
     private func redirectToHome() {
-      
-        let homeViewController = HomeScreenViewController()
-        navigationController?.setViewControllers([homeViewController], animated: true)
- 
+
+        let mainAppTabBarVC = TabBarViewController()
+        mainAppTabBarVC.modalPresentationStyle = .fullScreen
+        present(mainAppTabBarVC,animated: true)
+        
+        
     }
     
     
