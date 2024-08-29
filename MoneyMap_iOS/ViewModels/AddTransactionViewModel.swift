@@ -16,20 +16,40 @@ final class AddTransactionViewModel{
         
         let addTransactionInfo = AddTransactionInfo(description: description, amount: amount, type: transactionType.rawValue)
         
-        TransactionWebService.addTransaction(addTransactionInfo: addTransactionInfo){ [weak self] result in
+//        TransactionWebService.addTransaction(addTransactionInfo: addTransactionInfo){ [weak self] result in
+//            DispatchQueue.main.async {
+//                
+//                switch result {
+//                case .success(_):
+//                    self?.userMessage.value = "Added successfully"
+//                case .failure(let error):
+//                    self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
+//                    
+//                    
+//                }
+//                
+//                
+//            }
+//            
+//        }
+        
+        NetworkService.shared.addTransaction(description: description, amount: amount, transactionType: transactionType){  [weak self] result in
+            
             DispatchQueue.main.async {
-                
-                switch result {
-                case .success(_):
-                    self?.userMessage.value = "Added successfully"
-                case .failure(let error):
-                    self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
-                    
-                    
-                }
-                
-                
+                            switch result {
+                            case .success(let transaction):
+                                print("Successfully add new transaction")
+                                self?.userMessage.value = "Added successfully"
+                            case .failure(let error):
+                                self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
+            
+            
+             }
+            
+            
             }
+            
+            
             
         }
         

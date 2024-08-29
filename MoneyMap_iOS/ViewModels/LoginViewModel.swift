@@ -35,29 +35,51 @@ final class LoginViewModel{
         updateLoadingStatus?(true)
         
             let userInfo = UserInfo(email: email, password: password)
-            AuthWebService().authenticateUser(userInfo: userInfo){[weak self] result in
-                
-                DispatchQueue.main.async {
-                    self?.updateLoadingStatus?(false)
-                    switch result {
-                    case .success(let tokenInfo):
-                        // add loggers in future for tokens
-                        if let accessTokenData = tokenInfo.accessToken.data(using: .utf8),
-                           let refreshTokenData = tokenInfo.refreshToken.data(using: .utf8) {
-                            self?.keychainHelper.save(accessTokenData, service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
-                            self?.keychainHelper.save(refreshTokenData, service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
-                            
-                        }
-                        //self?.userMessage.value = "Login successfully"
-                        self?.isAuthenticated.value = true
-                    case .failure(let error):
-                        self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
+        
+//            AuthWebService().authenticateUser(userInfo: userInfo){[weak self] result in
+//                
+//                DispatchQueue.main.async {
+//                    self?.updateLoadingStatus?(false)
+//                    switch result {
+//                    case .success(let tokenInfo):
+//                        // add loggers in future for tokens
+//                        if let accessTokenData = tokenInfo.accessToken.data(using: .utf8),
+//                           let refreshTokenData = tokenInfo.refreshToken.data(using: .utf8) {
+//                            self?.keychainHelper.save(accessTokenData, service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
+//                            self?.keychainHelper.save(refreshTokenData, service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
+//                            
+//                        }
+//                        //self?.userMessage.value = "Login successfully"
+//                        self?.isAuthenticated.value = true
+//                    case .failure(let error):
+//                        self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
+//                    }
+//                    
+//                }
+//        }
+        
+        NetworkService.shared.authenticateUser(userInfo: userInfo){[weak self] result in
+            
+            DispatchQueue.main.async {
+                self?.updateLoadingStatus?(false)
+                switch result {
+                case .success(let tokenInfo):
+                    // add loggers in future for tokens
+                    if let accessTokenData = tokenInfo.accessToken.data(using: .utf8),
+                       let refreshTokenData = tokenInfo.refreshToken.data(using: .utf8) {
+                        self?.keychainHelper.save(accessTokenData, service: KeyChainConstants.accessTokenService, account: KeyChainConstants.tokenAccount)
+                        self?.keychainHelper.save(refreshTokenData, service: KeyChainConstants.refreshTokenService, account: KeyChainConstants.tokenAccount)
+                        
                     }
-                    
+                    //self?.userMessage.value = "Login successfully"
+                    self?.isAuthenticated.value = true
+                case .failure(let error):
+                    self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
                 }
                 
-            
-        }
+            }
+    }
+        
         
         
     }

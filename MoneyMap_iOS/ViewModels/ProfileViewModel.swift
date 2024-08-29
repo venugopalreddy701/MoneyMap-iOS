@@ -29,7 +29,27 @@ final class ProfileViewModel{
         //start progress indicator
         updateLoadingStatus?(true)
         
-        UserWebService.getUserDetails(){[weak self] (result: Result<UserProfileInfo, Error>) in
+//        UserWebService.getUserDetails(){[weak self] (result: Result<UserProfileInfo, Error>) in
+//            guard let self = self else { return }
+//            
+//            DispatchQueue.main.async {
+//                //close progress indicator
+//                self.updateLoadingStatus?(false)
+//                
+//                switch result {
+//                case .success(let userProfileInfo):
+//                    self.userEmail.value = userProfileInfo.email
+//                    self.profilePicData.value = userProfileInfo.profile
+//                    self.userMessage.value = "User Details fetch successfully"
+//                case .failure(let error):
+//                    self.isAuthenticated.value = false
+//                    self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
+//                }
+//                
+//            }
+//        }
+        
+        NetworkService.shared.getUserDetails(){[weak self] (result: Result<UserProfileInfo, Error>) in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
@@ -42,8 +62,10 @@ final class ProfileViewModel{
                     self.profilePicData.value = userProfileInfo.profile
                     self.userMessage.value = "User Details fetch successfully"
                 case .failure(let error):
+                    print("Inside PVM line 65")
                     self.isAuthenticated.value = false
                     self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
+                    print("Invalid login: Error occurred - \(error.localizedDescription)")
                 }
                 
             }
@@ -55,7 +77,27 @@ final class ProfileViewModel{
         //start progress indicator
         updateLoadingStatus?(true)
         
-        UserWebService.logoutUser(){[weak self] result in
+//        UserWebService.logoutUser(){[weak self] result in
+//            guard let self = self else { return }
+//            
+//            DispatchQueue.main.async {
+//                //close progress indicator
+//                self.updateLoadingStatus?(false)
+//                
+//                switch result {
+//                case .success(_):
+//                    self.userMessage.value = "Log out successfull"
+//                    self.isAuthenticated.value = false
+//                case .failure(let error):
+//                    
+//                    self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
+//                }
+//                
+//            }
+//        }
+//        
+        
+        NetworkService.shared.logOut(){[weak self] result in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
@@ -63,7 +105,7 @@ final class ProfileViewModel{
                 self.updateLoadingStatus?(false)
                 
                 switch result {
-                case .success(_):
+                case .success(let userInfo):
                     self.userMessage.value = "Log out successfull"
                     self.isAuthenticated.value = false
                 case .failure(let error):
@@ -93,24 +135,48 @@ final class ProfileViewModel{
             
             let profilePictureString = profilePicture.toBase64String()
             
-            UserWebService.saveNewProfilePic(profilePicString: profilePictureString!){[weak self] result in
+//            UserWebService.saveNewProfilePic(profilePicString: profilePictureString!){[weak self] result in
+//                guard let self = self else { return }
+//                
+//                DispatchQueue.main.async {
+//                    //close progress indicator
+//                    self.updateLoadingStatus?(false)
+//                    
+//                    switch result {
+//                    case .success(_):
+//                        self.userMessage.value = "Image SuccessFully Updated"
+//                        self.isAuthenticated.value = false
+//                    case .failure(let error):
+//                        
+//                        self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
+//                    }
+//                    self.updateLoadingStatus?(false)
+//                }
+//            }
+            
+            NetworkService.shared.saveNewProfilePic(profilePicString: profilePictureString!){ [weak self] result in
+            
                 guard let self = self else { return }
                 
+                
                 DispatchQueue.main.async {
-                    //close progress indicator
                     self.updateLoadingStatus?(false)
-                    
-                    switch result {
-                    case .success(_):
-                        self.userMessage.value = "Image SuccessFully Updated"
-                        self.isAuthenticated.value = false
+                    switch result{
+                    case .success(let UserCreationResponse):
+                        print("D:Success with creating new user")
+                        self.userMessage.value = "Profile Pic updated successfully"
                     case .failure(let error):
-                        
-                        self.userMessage.value = "Invalid login: Error occurred - \(error.localizedDescription)"
+                        self.userMessage.value = "Error occurred: \(error.localizedDescription)"
                     }
-                    self.updateLoadingStatus?(false)
                 }
+                
+                
+                
+                
             }
+            
+            
+            
         }
         
         

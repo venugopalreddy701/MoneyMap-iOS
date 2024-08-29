@@ -36,29 +36,64 @@ final class TransactionListViewModel{
         //start progress indicator
         updateLoadingStatus?(true)
         
-            TransactionWebService.getAllTransactions { [weak self] result in
-                
-                self!.updateLoadingStatus?(false)
-                
-                switch result {
-                case .success(let transactions):
-                    self?.transactionViewModels = transactions.map { transaction in
-                        TransactionViewModel(id:transaction.id,
-                                             type: transaction.type,
-                                             description: transaction.description,
-                                             date: transaction.date,
-                                             amount: transaction.amount)
-                        
-                    }
-                    
-                case .failure(let error):
-                    
-                    self?.isAuthenticated.value = false
+//            TransactionWebService.getAllTransactions { [weak self] result in
+//                
+//                self!.updateLoadingStatus?(false)
+//                
+//                switch result {
+//                case .success(let transactions):
+//                    self?.transactionViewModels = transactions.map { transaction in
+//                        TransactionViewModel(id:transaction.id,
+//                                             type: transaction.type,
+//                                             description: transaction.description,
+//                                             date: transaction.date,
+//                                             amount: transaction.amount)
+//                        
+//                    }
+//                    
+//                case .failure(let error):
+//                    
+//                    self?.isAuthenticated.value = false
+//                    
+//                }
+//                completion()
+//                
+//            }
+//        
+        
+        NetworkService.shared.getAllTransactions { [weak self] result in
+            
+            self!.updateLoadingStatus?(false)
+            
+            switch result {
+            case .success(let transactionList):
+                let transactions = transactionList.transactionList
+                self?.transactionViewModels = transactions.map { transaction in
+                    TransactionViewModel(id:transaction.id,
+                                         type: transaction.type,
+                                         description: transaction.description,
+                                         date: transaction.date,
+                                         amount: transaction.amount)
                     
                 }
-                completion()
+                
+            case .failure(let error):
+                
+                self?.isAuthenticated.value = false
                 
             }
+            completion()
+            
+        }
+    
+        
+        
+        
+        
+        
+        
+        
+        
         }
     
     func calculateEarningsAndSpentValues(){
@@ -95,11 +130,28 @@ final class TransactionListViewModel{
         transactionViewModels.remove(at: index)
  
         
-        TransactionWebService.removeTransaction(id:idToDelete){ [weak self] result in
+//        TransactionWebService.removeTransaction(id:idToDelete){ [weak self] result in
+//            guard let self = self else { return }
+//            self.updateLoadingStatus?(false)
+//            switch result {
+//            case .success(_):
+//                   break
+//                
+//            case .failure(_):
+//                
+//                self.isAuthenticated.value = false
+//              
+//            }
+//           
+//            
+//        }
+        
+        NetworkService.shared.removeTransaction(id:idToDelete){ [weak self] result in
             guard let self = self else { return }
             self.updateLoadingStatus?(false)
             switch result {
-            case .success(_):
+            case .success(let transaction):
+                print("Successfully deleted transaction")
                    break
                 
             case .failure(_):
@@ -110,6 +162,7 @@ final class TransactionListViewModel{
            
             
         }
+        
         
        self.calculateEarningsAndSpentValues()
        

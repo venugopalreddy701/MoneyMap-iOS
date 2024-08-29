@@ -224,6 +224,7 @@ final class ProfileViewController: UIViewController {
     
     private func redirectToLogin() {
  
+        print("redirect to login event triggered in ProfileVC")
         let navVC = UINavigationController(rootViewController: LoginViewController())
         navVC.modalPresentationStyle = .fullScreen
         self.present(navVC, animated: true, completion: {

@@ -217,6 +217,7 @@ final class TransactionViewController : UIViewController, UITableViewDataSource,
     
     private func redirectToLogin() {
  
+        print("Redirect to login triggered in TransactionVC")
         DispatchQueue.main.async{
             let navVC = UINavigationController(rootViewController: LoginViewController())
             navVC.modalPresentationStyle = .fullScreen
