@@ -8,7 +8,7 @@
 import UIKit
 
 struct LayoutConstants {
-    
+
     static let imageTopMargin: CGFloat = 40
     static let imageSize: CGFloat = 200
     static let buttonTopMargin: CGFloat = 10

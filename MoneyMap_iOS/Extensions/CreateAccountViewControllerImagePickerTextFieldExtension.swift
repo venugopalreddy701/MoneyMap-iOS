@@ -9,7 +9,10 @@ import UIKit
 
 extension CreateAccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = selectedImage
         }
@@ -20,12 +23,10 @@ extension CreateAccountViewController: UIImagePickerControllerDelegate, UINaviga
         picker.dismiss(animated: true, completion: nil)
     }
 
-    // Hide the keyboard when return key is pressed
+    /// Hide the keyboard when return key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
-
-
 

@@ -7,55 +7,26 @@
 
 import Foundation
 
-final class AddTransactionViewModel{
+final class AddTransactionViewModel {
     
     let title = "Add Transaction"
     var userMessage: Observable<String?> = Observable(nil)
     
-    func addTransaction(description:String , amount : Int , transactionType :TransactionType){
+    func addTransaction(description: String, amount: Int, transactionType: TransactionType) {
         
         let addTransactionInfo = AddTransactionInfo(description: description, amount: amount, type: transactionType.rawValue)
         
-//        TransactionWebService.addTransaction(addTransactionInfo: addTransactionInfo){ [weak self] result in
-//            DispatchQueue.main.async {
-//                
-//                switch result {
-//                case .success(_):
-//                    self?.userMessage.value = "Added successfully"
-//                case .failure(let error):
-//                    self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
-//                    
-//                    
-//                }
-//                
-//                
-//            }
-//            
-//        }
-        
-        NetworkService.shared.addTransaction(description: description, amount: amount, transactionType: transactionType){  [weak self] result in
+        NetworkService.shared.addTransaction(description: description, amount: amount, transactionType: transactionType) { [weak self] result in
             
             DispatchQueue.main.async {
-                            switch result {
-                            case .success(let transaction):
-                                print("Successfully add new transaction")
-                                self?.userMessage.value = "Added successfully"
-                            case .failure(let error):
-                                self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
-            
-            
-             }
-            
-            
+                switch result {
+                case .success:
+                    self?.userMessage.value = "Transaction added successfully"
+                case .failure(let error):
+                    self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
+                }
             }
-            
-            
-            
         }
-        
-        
-        
     }
-    
-    
 }
+

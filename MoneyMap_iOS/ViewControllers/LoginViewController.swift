@@ -39,7 +39,6 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    
     private let registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Create Account", for: .normal)
@@ -50,9 +49,6 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-   
-    
-    
     private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.hidesWhenStopped = true
@@ -60,18 +56,14 @@ final class LoginViewController: UIViewController {
         return activityIndicator
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         bindViewModel()
     }
     
-  
-    private func setUpUI(){
-        
+    private func setUpUI() {
         title = loginVM.title
-        
         view.backgroundColor = .white
         
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
@@ -84,44 +76,32 @@ final class LoginViewController: UIViewController {
         view.addSubview(activityIndicator)
         
         NSLayoutConstraint.activate([
-            // Constraints for emailTextField
             emailTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: LayoutConstants.textFieldTopMargin),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
             
-            // Constraints for passwordTextField
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldTopMargin - 50),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
             
-            // Constraints for loginButton
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.buttonHorizontalPadding),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.buttonHorizontalPadding),
             
-            // Constraints for registerButton
             registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.buttonHorizontalPadding),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.buttonHorizontalPadding),
             
-            activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-       
-       
     }
-    
-   
     
     @objc private func loginButtonTapped(_ sender: UIButton) {
-        
         loginVM.loginUser(email: emailTextField.text, password: passwordTextField.text)
-     
     }
     
-    
     @objc private func registerButtonTapped(_ sender: UIButton) {
-        
         let createAccountViewController = CreateAccountViewController()
         navigationController?.pushViewController(createAccountViewController, animated: true)
     }
@@ -133,14 +113,13 @@ final class LoginViewController: UIViewController {
     }
     
     private func bindViewModel() {
-
         loginVM.userMessage.bind { [weak self] message in
             if let message = message {
                 self?.showAlert(message: message)
             }
         }
         
-        //setup closure to update the indicator
+        // Setup closure to update the indicator
         loginVM.updateLoadingStatus = { [weak self] isLoading in
             guard let self = self else { return }
             if isLoading {
@@ -154,35 +133,21 @@ final class LoginViewController: UIViewController {
             }
         }
         
-        //for login redirect
-        loginVM.isAuthenticated.bind{ [weak self] state in
-        
+        // For login redirect
+        loginVM.isAuthenticated.bind { [weak self] state in
             switch state {
-             case true :
+            case true:
                 self?.redirectToHome()
-             default:
+            default:
                 break
-              }
-          
-          }
-        
-       
+            }
+        }
     }
-    
-    
     
     private func redirectToHome() {
-
         let mainAppTabBarVC = TabBarViewController()
         mainAppTabBarVC.modalPresentationStyle = .fullScreen
-        present(mainAppTabBarVC,animated: true)
-        
-        
+        present(mainAppTabBarVC, animated: true)
     }
-    
-    
-    
-    
 }
-
 

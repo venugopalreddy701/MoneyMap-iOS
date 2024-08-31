@@ -7,20 +7,17 @@
 
 import Foundation
 
-final class TransactionListViewModel{
+final class TransactionListViewModel {
     
     let title = "Transactions"
     
     var isAuthenticated: Observable<Bool> = Observable(true)
-    
     var updateLoadingStatus: ((Bool) -> Void)?
     
     private var transactionViewModels = [TransactionViewModel]()
     
-    var earnedTotal:Observable<Int> = Observable(0)
-    
-    var spentTotal:Observable<Int> = Observable(0)
-    
+    var earnedTotal: Observable<Int> = Observable(0)
+    var spentTotal: Observable<Int> = Observable(0)
     
     func numberOfRows(_ section: Int) -> Int {
         return transactionViewModels.count
@@ -30,146 +27,72 @@ final class TransactionListViewModel{
         return transactionViewModels[index]
     }
     
-    
     func fetchTransactions(completion: @escaping () -> Void) {
-        
-        //start progress indicator
+        // Start progress indicator
         updateLoadingStatus?(true)
         
-//            TransactionWebService.getAllTransactions { [weak self] result in
-//                
-//                self!.updateLoadingStatus?(false)
-//                
-//                switch result {
-//                case .success(let transactions):
-//                    self?.transactionViewModels = transactions.map { transaction in
-//                        TransactionViewModel(id:transaction.id,
-//                                             type: transaction.type,
-//                                             description: transaction.description,
-//                                             date: transaction.date,
-//                                             amount: transaction.amount)
-//                        
-//                    }
-//                    
-//                case .failure(let error):
-//                    
-//                    self?.isAuthenticated.value = false
-//                    
-//                }
-//                completion()
-//                
-//            }
-//        
-        
         NetworkService.shared.getAllTransactions { [weak self] result in
-            
-            self!.updateLoadingStatus?(false)
+            self?.updateLoadingStatus?(false)
             
             switch result {
             case .success(let transactionList):
                 let transactions = transactionList.transactionList
                 self?.transactionViewModels = transactions.map { transaction in
-                    TransactionViewModel(id:transaction.id,
-                                         type: transaction.type,
-                                         description: transaction.description,
-                                         date: transaction.date,
-                                         amount: transaction.amount)
-                    
+                    TransactionViewModel(
+                        id: transaction.id,
+                        type: transaction.type,
+                        description: transaction.description,
+                        date: transaction.date,
+                        amount: transaction.amount
+                    )
                 }
                 
-            case .failure(let error):
-                
+            case .failure:
                 self?.isAuthenticated.value = false
-                
             }
             completion()
-            
         }
+    }
     
+    func calculateEarningsAndSpentValues() {
+        var earnings: Int = 0
+        var spent: Int = 0
         
-        
-        
-        
-        
-        
-        
-        
-        }
-    
-    func calculateEarningsAndSpentValues(){
-        
-            var earnings: Int = 0
-            var spent:Int = 0
-            
-            for transactionViewModel in self.transactionViewModels {
-                if transactionViewModel.type == TransactionType.earned {
-                    earnings = earnings + transactionViewModel.amount
-                }
-                if transactionViewModel.type == TransactionType.spent {
-                    spent = spent + transactionViewModel.amount
-                }
-                
+        for transactionViewModel in self.transactionViewModels {
+            if transactionViewModel.type == .earned {
+                earnings += transactionViewModel.amount
+            } else if transactionViewModel.type == .spent {
+                spent += transactionViewModel.amount
             }
-            
+        }
         
         DispatchQueue.main.async {
             self.earnedTotal.value = earnings
             self.spentTotal.value = spent
         }
-    
-        
     }
     
-    func removeTransaction(at index:Int){
-        
-        //start progress indicator
+    func removeTransaction(at index: Int) {
+        // Start progress indicator
         updateLoadingStatus?(true)
         
         let idToDelete = transactionViewModels[index].id
-        
         transactionViewModels.remove(at: index)
- 
         
-//        TransactionWebService.removeTransaction(id:idToDelete){ [weak self] result in
-//            guard let self = self else { return }
-//            self.updateLoadingStatus?(false)
-//            switch result {
-//            case .success(_):
-//                   break
-//                
-//            case .failure(_):
-//                
-//                self.isAuthenticated.value = false
-//              
-//            }
-//           
-//            
-//        }
-        
-        NetworkService.shared.removeTransaction(id:idToDelete){ [weak self] result in
+        NetworkService.shared.removeTransaction(id: idToDelete) { [weak self] result in
             guard let self = self else { return }
             self.updateLoadingStatus?(false)
-            switch result {
-            case .success(let transaction):
-                print("Successfully deleted transaction")
-                   break
-                
-            case .failure(_):
-                
-                self.isAuthenticated.value = false
-              
-            }
-           
             
+            switch result {
+            case .success:
+                break
+            case .failure:
+                self.isAuthenticated.value = false
+            }
         }
         
-        
-       self.calculateEarningsAndSpentValues()
-       
-        
+        self.calculateEarningsAndSpentValues()
     }
-    
-    
 }
 
 final class TransactionViewModel {
@@ -180,13 +103,12 @@ final class TransactionViewModel {
     let dateString: String
     let amount: Int
     
-    init(id:Int,type: TransactionType, description: String, date: String, amount: Int) {
+    init(id: Int, type: TransactionType, description: String, date: String, amount: Int) {
         self.id = id
         self.type = type
         self.description = description
         self.dateString = date
         self.amount = amount
     }
-    
-    
 }
+

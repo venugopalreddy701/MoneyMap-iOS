@@ -28,7 +28,6 @@ final class SpentView: UIView {
     init() {
         super.init(frame: .zero)
         setupView()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -50,10 +49,8 @@ final class SpentView: UIView {
         ])
     }
     
-    func setAmount(_ amount : Int)
-    {
+    func setAmount(_ amount: Int) {
         amountLabel.text = "$" + String(amount)
     }
-    
 }
 

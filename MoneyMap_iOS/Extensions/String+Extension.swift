@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-extension String{
+extension String {
     
     static func fromBase64String(_ base64String: String) -> UIImage? {
-           guard let imageData = Data(base64Encoded: base64String) else { return nil }
-           return UIImage(data: imageData)
-       }
-    
+        guard let imageData = Data(base64Encoded: base64String) else { return nil }
+        return UIImage(data: imageData)
+    }
     
 }
+

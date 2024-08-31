@@ -6,8 +6,12 @@
 //
 
 import Foundation
-struct UserCreationResponse:Decodable{
-    let id:Int
-    let email:String
-    let profile:String
+
+struct UserCreationResponse: Decodable {
+    
+    let id: Int
+    let email: String
+    let profile: String
+    
 }
+

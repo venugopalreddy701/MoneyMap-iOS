@@ -76,23 +76,19 @@ final class CreateAccountViewController: UIViewController {
         return activityIndicator
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         bindViewModel()
     }
     
-    
     func bindViewModel() {
-
         createAccountVM.userMessage.bind { [weak self] message in
             if let message = message {
                 self?.showAlert(message: message)
             }
         }
         
-        //setup closure to update the indicator
         createAccountVM.updateLoadingStatus = { [weak self] isLoading in
             guard let self = self else { return }
             
@@ -106,19 +102,15 @@ final class CreateAccountViewController: UIViewController {
                 self.navigationController?.navigationBar.isUserInteractionEnabled = true
             }
         }
-        
-        
     }
     
-    // Make UIImage view round during load by runtime calculations
+    /// Make UIImageView round during load by runtime calculations
     override func viewWillLayoutSubviews() {
         profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
     }
     
     func setUpUI() {
-        
         title = createAccountVM.title
-
         view.backgroundColor = .white
 
         editProfileImageButton.addTarget(self, action: #selector(chooseProfileImageButtonTapped), for: .touchUpInside)
@@ -133,46 +125,46 @@ final class CreateAccountViewController: UIViewController {
         view.addSubview(activityIndicator)
         
         NSLayoutConstraint.activate([
-           
             profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: LayoutConstants.imageTopMargin),
             profileImageView.widthAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
             profileImageView.heightAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
-            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-            
+            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         NSLayoutConstraint.activate([
-            
             editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
-            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-            
+            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         NSLayoutConstraint.activate([
-            
             emailTextField.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: LayoutConstants.textFieldTopMargin),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
-            
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)
+        ])
+        
         NSLayoutConstraint.activate([
-           
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
-            
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)
+        ])
+        
         NSLayoutConstraint.activate([
-            
             confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
             confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
-            
+            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)
+        ])
+        
         NSLayoutConstraint.activate([
-            
             registerButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: LayoutConstants.textFieldSpacing),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding),
-            registerButton.heightAnchor.constraint(equalToConstant: LayoutConstants.buttonHeight)])
-            
+            registerButton.heightAnchor.constraint(equalToConstant: LayoutConstants.buttonHeight)
+        ])
         
         NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -182,7 +174,7 @@ final class CreateAccountViewController: UIViewController {
         passwordTextField.returnKeyType = .done
         confirmPasswordTextField.returnKeyType = .done
         
-        // Quit from keyboard when other view is pressed
+        /// Quit from keyboard when other view is pressed
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
@@ -199,22 +191,22 @@ final class CreateAccountViewController: UIViewController {
     }
     
     @objc private func registerButtonTapped(_ sender: UIButton) {
-       guard let email = emailTextField.text, !email.isEmpty else {
-           showAlert(message: "Please enter your email.")
-           return
-         }
+        guard let email = emailTextField.text, !email.isEmpty else {
+            showAlert(message: "Please enter your email.")
+            return
+        }
     
-       guard let password = passwordTextField.text, !password.isEmpty else {
-           showAlert(message: "Please enter your password.")
-           return
-         }
+        guard let password = passwordTextField.text, !password.isEmpty else {
+            showAlert(message: "Please enter your password.")
+            return
+        }
     
-       guard let reenteredPassword = confirmPasswordTextField.text, !reenteredPassword.isEmpty else {
-           showAlert(message: "Please re-enter your password.")
-           return
-         }
-        let profilePicture = profileImageView.image
+        guard let reenteredPassword = confirmPasswordTextField.text, !reenteredPassword.isEmpty else {
+            showAlert(message: "Please re-enter your password.")
+            return
+        }
         
+        let profilePicture = profileImageView.image
         createAccountVM.createNewUser(email: email, password: password, reenteredPassword: reenteredPassword, profilePicture: profilePicture)
     }
     

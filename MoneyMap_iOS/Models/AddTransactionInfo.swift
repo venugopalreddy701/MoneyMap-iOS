@@ -7,8 +7,11 @@
 
 import Foundation
 
-struct AddTransactionInfo: Encodable{
+struct AddTransactionInfo: Encodable {
+    
     let description: String
-    let amount : Int
-    let type:String
+    let amount: Int
+    let type: String
+    
 }
+

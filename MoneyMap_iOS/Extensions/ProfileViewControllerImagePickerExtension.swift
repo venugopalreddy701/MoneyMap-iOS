@@ -7,10 +7,12 @@
 
 import UIKit
 
-
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = selectedImage
         }
@@ -21,9 +23,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true, completion: nil)
     }
 
+    /// Hide the keyboard when return key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Hide the keyboard when return key is pressed
         textField.resignFirstResponder()
         return true
     }
 }
+

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TokenInfo : Decodable {
-    
+struct TokenInfo: Decodable {
+
     let accessToken: String
     let refreshToken: String
     let tokenType: String
@@ -17,3 +17,4 @@ struct TokenInfo : Decodable {
     let profile: String
     
 }
+

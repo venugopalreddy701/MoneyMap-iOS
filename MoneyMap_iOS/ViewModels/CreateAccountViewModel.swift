@@ -1,9 +1,10 @@
 //
-//  createAccountViewModel.swift
+//  CreateAccountViewModel.swift
 //  MoneyMap-iOS
 //
 //  Created by Venugopal Reddy M on 10/02/24.
 //
+
 import UIKit
 
 final class CreateAccountViewModel {
@@ -15,73 +16,46 @@ final class CreateAccountViewModel {
     var updateLoadingStatus: ((Bool) -> Void)?
     
     func createNewUser(email: String, password: String, reenteredPassword: String, profilePicture: UIImage?) {
-           
-        if !validateInputs(email: email, password: password, reenteredPassword: reenteredPassword){
+        
+        if !validateInputs(email: email, password: password, reenteredPassword: reenteredPassword) {
             return
         }
         
-        //start progress indicator
+        // Start progress indicator
         updateLoadingStatus?(true)
-
-  
-           DispatchQueue.global().async {
-               let profilePictureString = profilePicture?.toBase64String()
-               let userToCreate = User(email: email, password: password, profileImageData: profilePictureString ?? "")
-              
-//               UserWebService.createNewUser(userToCreate) { [weak self] result in
-//                   DispatchQueue.main.async {
-//                       self?.updateLoadingStatus?(false)
-//                       switch result {
-//                       case .success(_):
-//                           self?.userMessage.value = "User created successfully"
-//                       case .failure(let error):
-//                           self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
-//                       }
-//                   }
-//               }
-               
-               NetworkService.shared.createNewUser(user: userToCreate){ [weak self] result in
-                   
-                   DispatchQueue.main.async {
-                       self?.updateLoadingStatus?(false)
-                       switch result{
-                       case .success(let UserCreationResponse):
-                           print("D:Success with creating new user")
-                           self?.userMessage.value = "User created successfully"
-                       case .failure(let error):
-                           self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
-                       }
-                   }
-                   
-                   
-               }
-               
-               
-           }
-       }
-    
-    
-    
-    private func validateInputs(email: String?, password: String?, reenteredPassword: String?) -> Bool {
-            guard let email = email, !email.isEmpty,
-                  let password = password, !password.isEmpty,
-                  let reenteredPassword = reenteredPassword, !reenteredPassword.isEmpty
-                 else {
-                userMessage.value = "Please make sure all fields are filled and a profile picture is selected."
-                return false
-            }
+        
+        DispatchQueue.global().async {
+            let profilePictureString = profilePicture?.toBase64String()
+            let userToCreate = User(email: email, password: password, profileImageData: profilePictureString ?? "")
             
-            if password != reenteredPassword {
-                userMessage.value = "Please make sure password fields match"
-                return false
+            NetworkService.shared.createNewUser(user: userToCreate) { [weak self] result in
+                DispatchQueue.main.async {
+                    self?.updateLoadingStatus?(false)
+                    switch result {
+                    case .success(_):
+                        self?.userMessage.value = "User created successfully"
+                    case .failure(let error):
+                        self?.userMessage.value = "Error occurred: \(error.localizedDescription)"
+                    }
+                }
             }
-            
-            return true
+        }
     }
     
-  
+    private func validateInputs(email: String?, password: String?, reenteredPassword: String?) -> Bool {
+        guard let email = email, !email.isEmpty,
+              let password = password, !password.isEmpty,
+              let reenteredPassword = reenteredPassword, !reenteredPassword.isEmpty else {
+            userMessage.value = "Please make sure all fields are filled and a profile picture is selected."
+            return false
+        }
+        
+        if password != reenteredPassword {
+            userMessage.value = "Please make sure password fields match"
+            return false
+        }
+        
+        return true
+    }
 }
-
-
-
 

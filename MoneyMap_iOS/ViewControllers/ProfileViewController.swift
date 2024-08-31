@@ -11,7 +11,7 @@ final class ProfileViewController: UIViewController {
 
     private let profileVM = ProfileViewModel()
     
-     let profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
         imageView.contentMode = .scaleAspectFill
@@ -22,7 +22,6 @@ final class ProfileViewController: UIViewController {
         return imageView
     }()
     
-    
     private let editProfileImageButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit Profile Picture", for: .normal)
@@ -32,7 +31,6 @@ final class ProfileViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -68,12 +66,10 @@ final class ProfileViewController: UIViewController {
     }()
     
     private let refreshButton: UIBarButtonItem = {
-        let Button = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
-        Button.tintColor = UIColor.blue
-        return Button
+        let button = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
+        button.tintColor = UIColor.blue
+        return button
     }()
-    
-    
     
     private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
@@ -82,7 +78,6 @@ final class ProfileViewController: UIViewController {
         return activityIndicator
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -90,19 +85,17 @@ final class ProfileViewController: UIViewController {
         profileVM.loadUserDetails()
     }
         
-    
-    private func setUpUI(){
-        
+    private func setUpUI() {
         title = profileVM.title
-        
         view.backgroundColor = .white
+        
         view.addSubview(profileImageView)
         view.addSubview(editProfileImageButton)
         view.addSubview(emailTextField)
         view.addSubview(activityIndicator)
         view.addSubview(saveButton)
         view.addSubview(signOutButton)
-    
+        
         navigationItem.rightBarButtonItem = refreshButton
         refreshButton.target = self
         refreshButton.action = #selector(loadUserProfile)
@@ -111,49 +104,45 @@ final class ProfileViewController: UIViewController {
         editProfileImageButton.addTarget(self, action: #selector(chooseProfileImageButtonTapped), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveProfilePic), for: .touchUpInside)
         
-        
-        
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: LayoutConstants.imageTopMargin),
             profileImageView.widthAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
             profileImageView.heightAnchor.constraint(equalToConstant: LayoutConstants.imageSize),
-            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-            
+            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         NSLayoutConstraint.activate([
             editProfileImageButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: LayoutConstants.buttonTopMargin),
-            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-            
+            editProfileImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         NSLayoutConstraint.activate([
             emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)
+        ])
         
-        
-            
         NSLayoutConstraint.activate([
             saveButton.topAnchor.constraint(equalTo: editProfileImageButton.bottomAnchor, constant: 35),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
-            
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)
+        ])
+        
         NSLayoutConstraint.activate([
             signOutButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 35),
             signOutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LayoutConstants.textFieldHorizontalPadding),
-            signOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)])
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo:view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            signOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstants.textFieldHorizontalPadding)
         ])
         
-    
-         
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
-    @objc private func logoutUser(){
-        
+    @objc private func logoutUser() {
         profileVM.logoutUser()
     }
-    
     
     private func showAlert(message: String) {
         let alertController = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
@@ -161,21 +150,17 @@ final class ProfileViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    
     private func bindViewModel() {
-
         profileVM.userMessage.bind { [weak self] message in
             guard let self = self else { return }
-            
             if let message = message {
                 self.showAlert(message: message)
             }
         }
         
-        //setup closure to update the indicator
+        // Setup closure to update the indicator
         profileVM.updateLoadingStatus = { [weak self] isLoading in
             guard let self = self else { return }
-            
             if isLoading {
                 self.activityIndicator.startAnimating()
                 self.view.isUserInteractionEnabled = false
@@ -187,17 +172,15 @@ final class ProfileViewController: UIViewController {
             }
         }
         
-        //for login redirect
-        profileVM.isAuthenticated.bind{ [weak self] state in
-        
+        // For login redirect
+        profileVM.isAuthenticated.bind { [weak self] state in
             switch state {
-             case false :
+            case false:
                 self?.redirectToLogin()
-             default:
-                    break
-                }
-          
-          }
+            default:
+                break
+            }
+        }
         
         profileVM.userEmail.bind { [weak self] email in
             if let email = email {
@@ -205,40 +188,29 @@ final class ProfileViewController: UIViewController {
             }
         }
         
-        profileVM.profilePicData.bind{ [weak self] profileData in
-            
+        profileVM.profilePicData.bind { [weak self] profileData in
             if let profileData = profileData {
                 self?.profileImageView.image = String.fromBase64String(profileData)
             }
-            
-            
-            
         }
-        
-       
     }
     
-    @objc private func loadUserProfile(){
+    @objc private func loadUserProfile() {
         profileVM.loadUserDetails()
     }
     
     private func redirectToLogin() {
- 
-        print("redirect to login event triggered in ProfileVC")
         let navVC = UINavigationController(rootViewController: LoginViewController())
         navVC.modalPresentationStyle = .fullScreen
         self.present(navVC, animated: true, completion: {
             self.navigationController?.popViewController(animated: false)
         })
-      
     }
     
-    
-    // Make UIImage view round during load by runtime calculations
-       override func viewWillLayoutSubviews() {
-           profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
-       }
-    
+    /// Make UIImageView round during load by runtime calculations
+    override func viewWillLayoutSubviews() {
+        profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
+    }
     
     @objc private func chooseProfileImageButtonTapped() {
         saveButton.isHidden = false
@@ -246,16 +218,10 @@ final class ProfileViewController: UIViewController {
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
         present(imagePickerController, animated: true, completion: nil)
-        
     }
     
-    @objc private func saveProfilePic()
-    {
+    @objc private func saveProfilePic() {
         profileVM.saveNewProfilePic(profilePicture: profileImageView.image)
     }
-    
-    
-    
-    
 }
 

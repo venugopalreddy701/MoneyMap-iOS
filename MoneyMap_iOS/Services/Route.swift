@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-enum Route{
+enum Route {
     
     static let baseURL = "http://localhost:8082"
     
@@ -18,14 +17,14 @@ enum Route{
     case updateUserProfilePic
     case getAllTransations
     case createNewTransaction
-    case deleteTransaction(id:Int)
+    case deleteTransaction(id: Int)
     case logout
-    var description:String {
-        
-        switch self{
-        case .createNewUser :
+    
+    var description: String {
+        switch self {
+        case .createNewUser:
             return "/register"
-        case .authenticateUser :
+        case .authenticateUser:
             return "/login"
         case .getUserDetails:
             return "/user/get"
@@ -40,10 +39,6 @@ enum Route{
         case .logout:
             return "/logout"
         }
-    
-        
     }
-    
-    
-    
 }
+

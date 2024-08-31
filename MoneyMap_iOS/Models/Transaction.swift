@@ -15,3 +15,4 @@ struct Transaction: Decodable {
     let userId: Int
     let amount: Int
 }
+

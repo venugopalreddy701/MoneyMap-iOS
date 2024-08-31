@@ -7,9 +7,10 @@
 
 import Foundation
 
-enum TransactionType:String , Codable{
+enum TransactionType: String, Codable {
     
     case earned
-    case spent 
+    case spent
     
 }
+
