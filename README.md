@@ -11,9 +11,10 @@
 
 ## 📸 Screenshots
 
-| User login | Create Account | All Transaction | Add Transaction | Delete Transaction | Add Transaction | View User Profile | Change Profile Pic | 
-|------------|----------------|-----------------|-----------------|--------------------|-----------------|--------------------|--------------|
-| <img width="385" alt="image" src="https://github.com/user-attachments/assets/a0141fba-7623-47cf-b82f-33a711145a94">| Data2          | Data3           | Data4           | Data5              | Data6           | Data7              | Data8        | 
+| User login | Create Account | All Transaction | Add Transaction | Delete Transaction | View User Profile |  
+|------------|----------------|-----------------|-----------------|--------------------|-------------------|
+| <img src="https://github.com/user-attachments/assets/591957f0-2393-49f8-a3bd-4e49608342c0" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/bb627964-8a18-4699-88f1-4d5f8a97fad5" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/bddc286c-9a20-4fc5-b328-732965c7a75b" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/e278e1a6-3e99-48b5-a543-737c77e35106" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/684d8974-fa67-4aad-ac2d-407fe3c95c4c" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/afc95491-9f1a-416a-9441-953fe01d2fb0" width="280" height="410"> |
+
 
 
 
