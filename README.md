@@ -11,9 +11,9 @@
 
 ## 📸 Screenshots
 
-| User login | Create Account | All Transaction | Add Transaction | Delete Transaction | View User Profile |  
-|------------|----------------|-----------------|-----------------|--------------------|-------------------|
-| <img src="https://github.com/user-attachments/assets/591957f0-2393-49f8-a3bd-4e49608342c0" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/bb627964-8a18-4699-88f1-4d5f8a97fad5" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/bddc286c-9a20-4fc5-b328-732965c7a75b" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/e278e1a6-3e99-48b5-a543-737c77e35106" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/684d8974-fa67-4aad-ac2d-407fe3c95c4c" width="200" height="410"> | <img src="https://github.com/user-attachments/assets/afc95491-9f1a-416a-9441-953fe01d2fb0" width="280" height="410"> |
+| Screen-1           | Screen-2           | Screen-3           | Screen-4           | Screen-5           | Screen-6           |  
+|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+|<img width="1500" alt="framed-image-0" src="https://github.com/user-attachments/assets/3127d7a6-ccb4-4d4c-8f3c-d5dd8e37d1c9"> | <img width="1500" alt="framed-image-0" src="https://github.com/user-attachments/assets/7d143d91-fe50-4fa4-bf57-0b99ece85efa"> |<img width="1500" alt="framed-image-3" src="https://github.com/user-attachments/assets/7f26b055-f1da-4281-bdd4-3cc5e6cd5a03">| <img width="1500" alt="framed-image-1" src="https://github.com/user-attachments/assets/d96e8902-573f-4be3-aa4b-2841cc1a8f5d"> |<img width="1500" alt="framed-image-2" src="https://github.com/user-attachments/assets/b8d8522f-3a62-4a15-a1f2-40fe6497de57">| <img width="1500" alt="framed-image-0" src="https://github.com/user-attachments/assets/205233a4-bcd5-4f9a-84e2-f45d7196b9e1"> |
 
 
 
